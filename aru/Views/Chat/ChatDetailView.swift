@@ -119,7 +119,7 @@ struct ChatDetailView: View {
                                     
                                     // 메시지 버블
                                     ForEach(messages) { message in
-                                        MessageBubble(message: message, chatColor: chat.color)
+                                        ChatDetailMessageBubble(message: message, chatColor: chat.color)
                                             .id(message.id)
                                     }
                                     
@@ -439,8 +439,8 @@ struct MessageInputView: View {
     }
 }
 
-// 메시지 버블 뷰
-struct MessageBubble: View {
+// 메시지 버블 뷰 (renamed to avoid conflict)
+struct ChatDetailMessageBubble: View {
     let message: ChatMessageData
     let chatColor: Color
     
@@ -463,8 +463,8 @@ struct MessageBubble: View {
                                 endPoint: .bottomTrailing
                             )
                         )
-                        .aruCornerRadius(18, corners: [.topLeft, .topRight, .bottomLeft])
-                        .aruCornerRadius(4, corners: [.bottomRight])
+                        .cornerRadius(18, corners: [.topLeft, .topRight, .bottomLeft])
+                        .cornerRadius(4, corners: [.bottomRight])
                     
                     Text(formatTime(date: message.timestamp))
                         .font(.system(size: 11))
@@ -501,8 +501,8 @@ struct MessageBubble: View {
                             .padding(.horizontal, 14)
                             .padding(.vertical, 10)
                             .background(Color.darkBackgroundSecondary)
-                            .aruCornerRadius(18, corners: [.topRight, .bottomRight, .bottomLeft])
-                            .aruCornerRadius(4, corners: [.topLeft])
+                            .cornerRadius(18, corners: [.topRight, .bottomRight, .bottomLeft])
+                            .cornerRadius(4, corners: [.topLeft])
                         
                         Text(formatTime(date: message.timestamp))
                             .font(.system(size: 11))
@@ -524,3 +524,23 @@ struct MessageBubble: View {
     }
 }
 
+// Helper extension for cornerRadius
+extension View {
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        clipShape(RoundedCorner(radius: radius, corners: corners))
+    }
+}
+
+struct RoundedCorner: Shape {
+    var radius: CGFloat = .infinity
+    var corners: UIRectCorner = .allCorners
+    
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(
+            roundedRect: rect, 
+            byRoundingCorners: corners, 
+            cornerRadii: CGSize(width: radius, height: radius)
+        )
+        return Path(path.cgPath)
+    }
+}

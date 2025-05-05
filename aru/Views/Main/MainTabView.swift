@@ -10,7 +10,7 @@ struct MainTabView: View {
         ZStack(alignment: .bottom) {
             TabView(selection: $selectedTab) {
                 // 패션 탭 (Virtual Fitting)
-                FashionView()
+                VirtualFittingView()
                     .tag(0)
                 
                 // 창작 탭
