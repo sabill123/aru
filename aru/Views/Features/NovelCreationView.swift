@@ -78,30 +78,64 @@ struct NovelCreationView: View {
 // MARK: - 헤더 뷰
 struct NovelHeaderView: View {
     let dismissAction: () -> Void
+    @State private var isPressed = false
     
     var body: some View {
         HStack {
+            // 트렌디한 뒤로가기 버튼
             Button(action: dismissAction) {
-                Image(systemName: "chevron.left")
-                    .font(.system(size: 20, weight: .semibold))
+                ZStack {
+                    Circle()
+                        .fill(Color.darkBackgroundSecondary.opacity(0.8))
+                        .frame(width: 38, height: 38)
+                        .shadow(color: Color.black.opacity(0.2), radius: 4, x: 0, y: 2)
+                    
+                    Image(systemName: "chevron.left")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(.white)
+                }
+                .scaleEffect(isPressed ? 0.95 : 1.0)
+            }
+            .pressEffect(intensity: 0.95)
+            
+            Spacer()
+            
+            // 중앙 타이틀과 아이콘 - 현대적 스타일
+            HStack(spacing: 8) {
+                Image(systemName: "book.fill")
+                    .font(.system(size: 20))
+                    .foregroundColor(Color(hex: "5E72EB"))
+                
+                Text("웹소설 생성")
+                    .font(.system(size: 22, weight: .bold))
                     .foregroundColor(.white)
             }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 10)
+            .background(
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(Color.darkBackgroundSecondary.opacity(0.3))
+                    .shadow(color: Color(hex: "5E72EB").opacity(0.2), radius: 8, x: 0, y: 4)
+            )
             
             Spacer()
             
-            Text("웹소설 생성")
-                .font(.system(size: 22, weight: .bold))
-                .foregroundColor(.white)
-            
-            Spacer()
-            
+            // 도움말 버튼
             Button(action: {
                 // 도움말
             }) {
-                Image(systemName: "questionmark.circle")
-                    .font(.system(size: 20))
-                    .foregroundColor(.white)
+                ZStack {
+                    Circle()
+                        .fill(Color.darkBackgroundSecondary.opacity(0.8))
+                        .frame(width: 38, height: 38)
+                        .shadow(color: Color.black.opacity(0.2), radius: 4, x: 0, y: 2)
+                    
+                    Image(systemName: "sparkles")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(Color(hex: "5E72EB"))
+                }
             }
+            .pressEffect(intensity: 0.95)
         }
         .padding(.horizontal, 20)
         .padding(.top, 16)
@@ -209,29 +243,62 @@ struct GenreButton: View {
     let genre: String
     let isSelected: Bool
     let action: () -> Void
+    @State private var isHovered = false
     
     var body: some View {
         Button(action: action) {
             Text(genre)
-                .font(.system(size: 14))
+                .font(.system(size: 15, weight: isSelected ? .semibold : .medium))
                 .padding(.horizontal, 16)
                 .padding(.vertical, 10)
                 .background(
-                    isSelected ? 
-                    LinearGradient(
-                        gradient: Gradient(colors: [Color(hex: "6A11CB"), Color(hex: "2575FC")]),
-                        startPoint: .leading, 
-                        endPoint: .trailing
-                    ) : 
-                    LinearGradient(
-                        gradient: Gradient(colors: [Color(hex: "1A1A32"), Color(hex: "1A1A32")]),
-                        startPoint: .leading, 
-                        endPoint: .trailing
-                    )
+                    ZStack {
+                        if isSelected {
+                            // 선택된 상태 배경
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(
+                                    LinearGradient(
+                                        gradient: Gradient(colors: [Color(hex: "6A11CB"), Color(hex: "2575FC")]),
+                                        startPoint: .leading, 
+                                        endPoint: .trailing
+                                    )
+                                )
+                                .shadow(color: Color(hex: "6A11CB").opacity(0.5), radius: 10, x: 0, y: 4)
+                            
+                            // 글로우 효과
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.white.opacity(0.3), lineWidth: 1)
+                        } else {
+                            // 비선택 상태 배경 - 유리 효과
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(Color(hex: "1A1A32").opacity(isHovered ? 0.7 : 0.5))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .stroke(
+                                            LinearGradient(
+                                                gradient: Gradient(colors: [
+                                                    Color.white.opacity(0.2),
+                                                    Color.white.opacity(0.05)
+                                                ]),
+                                                startPoint: .topLeading,
+                                                endPoint: .bottomTrailing
+                                            ),
+                                            lineWidth: 1
+                                        )
+                                )
+                        }
+                    }
                 )
-                .cornerRadius(20)
                 .foregroundColor(.white)
+                .scaleEffect(isHovered ? 1.05 : 1.0)
+                .animation(.spring(response: 0.2, dampingFraction: 0.6), value: isHovered)
         }
+        .onHover { hovering in
+            withAnimation(.easeInOut(duration: 0.2)) {
+                isHovered = hovering
+            }
+        }
+        .pressEffect(intensity: 0.95)
     }
 }
 
@@ -265,11 +332,14 @@ struct TextAreaInputView: View {
 struct NovelGenerateButtonView: View {
     let isGenerating: Bool
     let generateAction: () -> Void
+    @State private var isPressed = false
+    @State private var pulsateAnimation = false
     
     var body: some View {
         Button(action: generateAction) {
             ZStack {
-                Rectangle()
+                // 기본 배경
+                RoundedRectangle(cornerRadius: 16)
                     .fill(
                         LinearGradient(
                             gradient: Gradient(colors: [Color(hex: "6A11CB"), Color(hex: "2575FC")]),
@@ -277,21 +347,86 @@ struct NovelGenerateButtonView: View {
                             endPoint: .trailing
                         )
                     )
-                    .cornerRadius(12)
-                    .frame(height: 56)
+                    .frame(height: 60)
+                    .shadow(color: Color(hex: "6A11CB").opacity(0.5), radius: 10, x: 0, y: 5)
+                    .overlay(
+                        // 글로우 오버레이
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color.white.opacity(pulsateAnimation ? 0.4 : 0.2), lineWidth: 1)
+                    )
+                    .scaleEffect(isPressed ? 0.97 : 1.0)
                 
+                // 로딩 or 텍스트
                 if isGenerating {
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                        .scaleEffect(1.3)
+                    // 커스텀 로딩 UI
+                    HStack(spacing: 12) {
+                        // 로딩 인디케이터
+                        ZStack {
+                            Circle()
+                                .stroke(Color.white.opacity(0.2), lineWidth: 3)
+                                .frame(width: 24, height: 24)
+                            
+                            Circle()
+                                .trim(from: 0, to: 0.7)
+                                .stroke(Color.white, lineWidth: 3)
+                                .frame(width: 24, height: 24)
+                                .rotationEffect(Angle(degrees: pulsateAnimation ? 360 : 0))
+                                .animation(
+                                    Animation.linear(duration: 1)
+                                        .repeatForever(autoreverses: false),
+                                    value: pulsateAnimation
+                                )
+                        }
+                        
+                        Text("웹소설 생성 중...")
+                            .font(.system(size: 17, weight: .semibold))
+                            .foregroundColor(.white)
+                    }
                 } else {
-                    Text("AI 웹소설 생성하기")
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(.white)
+                    // 트렌디한 버튼 텍스트
+                    HStack(spacing: 10) {
+                        Image(systemName: "wand.and.stars")
+                            .font(.system(size: 18))
+                            .foregroundColor(.white)
+                        
+                        Text("AI 웹소설 생성하기")
+                            .font(.system(size: 17, weight: .semibold))
+                            .foregroundColor(.white)
+                    }
+                    .opacity(pulsateAnimation ? 1.0 : 0.9)
+                    .scaleEffect(pulsateAnimation ? 1.02 : 1.0)
+                    .animation(
+                        Animation.easeInOut(duration: 1.5)
+                            .repeatForever(autoreverses: true),
+                        value: pulsateAnimation
+                    )
                 }
             }
         }
+        .buttonStyle(PlainButtonStyle())
         .disabled(isGenerating)
+        .onAppear {
+            withAnimation {
+                pulsateAnimation = true
+            }
+        }
+        .simultaneousGesture(
+            DragGesture(minimumDistance: 0)
+                .onChanged { _ in
+                    if !isGenerating {
+                        withAnimation(.easeInOut(duration: 0.2)) {
+                            isPressed = true
+                        }
+                    }
+                }
+                .onEnded { _ in
+                    if !isGenerating {
+                        withAnimation(.spring(response: 0.2, dampingFraction: 0.6)) {
+                            isPressed = false
+                        }
+                    }
+                }
+        )
         .padding(.top, 8)
     }
 }

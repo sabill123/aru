@@ -1,1349 +1,676 @@
-// ChatView.swift - 채팅 탭
 import SwiftUI
 
 struct ChatView: View {
     // 상태 변수
-    @State private var activeTab = 0
-    @State private var animateContent = false
-    @State private var searchText = ""
-    @State private var showNewChat = false
-    @State private var showChatDetail = false
-    @State private var selectedChat: ChatData? = nil
-    @State private var isPullingToRefresh = false
-    @State private var refreshComplete = false
-    
-    // 카테고리 데이터
-    let chatCategories = ["모두", "친구", "선생님", "비서", "가상인물"]
-    
-    // 샘플 채팅 데이터
-    let chats: [ChatData] = [
-        ChatData(id: 1, name: "우주선장", avatarIcon: "person.fill", preview: "오늘은 무엇을 도와드릴까요?", time: "13:45", color: .accentPink, unreadCount: 2, isOnline: true),
-        ChatData(id: 2, name: "학습코치", avatarIcon: "brain.head.profile", preview: "수학 문제 분석을 완료했습니다.", time: "어제", color: .primaryPurple, unreadCount: 0, isOnline: true),
-        ChatData(id: 3, name: "영어선생님", avatarIcon: "graduationcap", preview: "영어 회화 연습을 계속할까요?", time: "화요일", color: .accentTeal, unreadCount: 3, isOnline: false),
-        ChatData(id: 4, name: "비서봇", avatarIcon: "briefcase", preview: "오늘 일정을 알려드릴게요.", time: "오전 10:15", color: .primaryBlue, unreadCount: 0, isOnline: true),
-        ChatData(id: 5, name: "사이버펑크", avatarIcon: "figure.wave", preview: "네온 시티의 이야기를 계속할까요?", time: "월요일", color: .accentYellow, unreadCount: 1, isOnline: false)
-    ]
-    
-    // 내 아바타
-    let myAvatars: [AvatarData] = [
-        AvatarData(id: 1, name: "우주선장", icon: "person.fill", color: .accentPink, lastUsed: "오늘"),
-        AvatarData(id: 2, name: "학습코치", icon: "brain.head.profile", color: .primaryPurple, lastUsed: "어제"),
-        AvatarData(id: 3, name: "영어선생님", icon: "graduationcap", color: .accentTeal, lastUsed: "3일 전")
-    ]
-    
-    var filteredChats: [ChatData] {
-        if activeTab == 0 { // "모두" 카테고리
-            return chats
-        } else {
-            // 다른 카테고리별 필터링
-            return chats.filter { $0.id % (activeTab + 1) == 0 }
-        }
-    }
-    
-    var body: some View {
-        ZStack {
-            // 메인 뷰
-            VStack(spacing: 0) {
-                // 헤더
-                EnhancedChatHeaderView(
-                    searchText: $searchText, 
-                    onSearchSubmit: {
-                        // 검색 액션
-                    },
-                    onNewChatTap: {
-                        withAnimation {
-                            showNewChat = true
-                        }
-                    }
-                )
-                .opacity(animateContent ? 1 : 0)
-                .offset(y: animateContent ? 0 : 20)
-                .animation(.easeOut(duration: 0.5).delay(0.1), value: animateContent)
-                
-                // 채팅 카테고리 탭
-                EnhancedChatCategoryScroll(
-                    categories: chatCategories, 
-                    activeTab: $activeTab
-                )
-                .opacity(animateContent ? 1 : 0)
-                .offset(y: animateContent ? 0 : 20)
-                .animation(.easeOut(duration: 0.5).delay(0.2), value: animateContent)
-                
-                // 채팅 리스트 영역
-                ZStack(alignment: .top) {
-                    // 실제 스크롤 뷰
-                    ScrollView {
-                        // 당겨서 새로고침 효과
-                        VStack {
-                            if isPullingToRefresh {
-                                RefreshingView(isComplete: $refreshComplete)
-                                    .frame(height: 70)
-                                    .offset(y: refreshComplete ? -30 : 0)
-                                    .animation(.easeOut(duration: 0.2), value: refreshComplete)
-                            }
-                            
-                            // 내 가상 아바타
-                            VStack(spacing: 16) {
-                                HStack {
-                                    Text("내 가상 아바타")
-                                        .font(.system(size: 16, weight: .semibold))
-                                        .foregroundColor(.white)
-                                    
-                                    Spacer()
-                                    
-                                    Button(action: {
-                                        // 아바타 관리
-                                    }) {
-                                        Text("관리")
-                                            .font(.system(size: 14))
-                                            .foregroundColor(.gray)
-                                    }
-                                }
-                                .padding(.horizontal, 20)
-                                
-                                // 아바타 리스트
-                                EnhancedAvatarScrollView(
-                                    avatars: myAvatars,
-                                    onAvatarTap: { avatar in
-                                        // 아바타 탭 액션
-                                    },
-                                    onNewAvatarTap: {
-                                        // 새 아바타 만들기
-                                    }
-                                )
-                            }
-                            .padding(.vertical, 16)
-                            .background(Color.darkBackgroundSecondary.opacity(0.6))
-                            .cornerRadius(16)
-                            .padding(.horizontal, 16)
-                            .padding(.top, 16)
-                            .opacity(animateContent ? 1 : 0)
-                            .offset(y: animateContent ? 0 : 20)
-                            .animation(.easeOut(duration: 0.5).delay(0.3), value: animateContent)
-                            
-                            // 최근 대화
-                            VStack(alignment: .leading, spacing: 16) {
-                                HStack {
-                                    Text("최근 대화")
-                                        .font(.system(size: 16, weight: .semibold))
-                                        .foregroundColor(.white)
-                                    
-                                    Spacer()
-                                    
-                                    // 정렬 옵션 버튼
-                                    Button(action: {
-                                        // 정렬 액션
-                                    }) {
-                                        Image(systemName: "arrow.up.arrow.down")
-                                            .font(.system(size: 14))
-                                            .foregroundColor(.gray)
-                                    }
-                                }
-                                .padding(.horizontal, 20)
-                                .padding(.top, 10)
-                                
-                                if filteredChats.isEmpty {
-                                    // 비어있을 때 표시
-                                    EmptyChatView(category: chatCategories[activeTab])
-                                } else {
-                                    // 채팅 리스트
-                                    ForEach(filteredChats) { chat in
-                                        EnhancedChatListItem(
-                                            chat: chat,
-                                            onTap: {
-                                                selectedChat = chat
-                                                showChatDetail = true
-                                            }
-                                        )
-                                        .opacity(animateContent ? 1 : 0)
-                                        .offset(y: animateContent ? 0 : 20)
-                                        .animation(.easeOut(duration: 0.5).delay(0.4 + Double(filteredChats.firstIndex(where: { $0.id == chat.id }) ?? 0) * 0.1), value: animateContent)
-                                    }
-                                }
-                            }
-                            .padding(.bottom, 100) // 하단 여유 공간
-                        }
-                        .background(
-                            GeometryReader { proxy in
-                                Color.clear
-                                    .preference(key: ScrollOffsetPreferenceKey.self, value: proxy.frame(in: .named("scrollView")).minY)
-                            }
-                        )
-                    }
-                    .coordinateSpace(name: "scrollView")
-                    .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
-                        // 당겨서 새로고침 감지
-                        if value > 50 && !isPullingToRefresh {
-                            isPullingToRefresh = true
-                            
-                            // 새로고침 완료 시뮬레이션
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                                refreshComplete = true
-                                
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                    isPullingToRefresh = false
-                                    refreshComplete = false
-                                }
-                            }
-                        }
-                    }
-                    
-                    // 플로팅 새 채팅 버튼
-                    VStack {
-                        Spacer()
-                        
-                        HStack {
-                            Spacer()
-                            
-                            Button(action: {
-                                withAnimation {
-                                    showNewChat = true
-                                }
-                            }) {
-                                ZStack {
-                                    Circle()
-                                        .fill(
-                                            LinearGradient(
-                                                gradient: Gradient(colors: [Color.primaryPurple, Color.primaryBlue]),
-                                                startPoint: .topLeading,
-                                                endPoint: .bottomTrailing
-                                            )
-                                        )
-                                        .frame(width: 56, height: 56)
-                                        .shadow(color: Color.primaryPurple.opacity(0.3), radius: 8, x: 0, y: 4)
-                                    
-                                    Image(systemName: "plus.message.fill")
-                                        .font(.system(size: 24))
-                                        .foregroundColor(.white)
-                                }
-                            }
-                            .padding(20)
-                            .offset(y: -80) // 탭바 위에 위치하도록
-                        }
-                    }
-                }
-            }
-            .background(Color.darkBackground)
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    animateContent = true
-                }
-            }
-            
-            // 새 채팅 시트
-            if showNewChat {
-                NewChatView(isPresented: $showNewChat)
-                    .transition(.move(edge: .bottom))
-                    .zIndex(2)
-            }
-        }
-        .fullScreenCover(isPresented: $showChatDetail) {
-            if let chat = selectedChat {
-                ChatDetailView(chat: chat, isPresented: $showChatDetail)
-            }
-        }
-    }
-}
-
-// 향상된 채팅 헤더 뷰
-struct EnhancedChatHeaderView: View {
-    @Binding var searchText: String
-    let onSearchSubmit: () -> Void
-    let onNewChatTap: () -> Void
-    @State private var isSearchActive = false
-    
-    var body: some View {
-        VStack(spacing: 16) {
-            // 상단 헤더
-            HStack {
-                Text("채팅")
-                    .font(.system(size: 28, weight: .bold))
-                    .foregroundColor(.white)
-                
-                Spacer()
-                
-                // 새 채팅 버튼 (검색이 활성화되지 않았을 때만 표시)
-                if !isSearchActive {
-                    Button(action: onNewChatTap) {
-                        Image(systemName: "square.and.pencil")
-                            .font(.system(size: 20))
-                            .foregroundColor(.white)
-                    }
-                }
-            }
-            .padding(.horizontal, 20)
-            
-            // 검색 바
-            HStack {
-                Image(systemName: "magnifyingglass")
-                    .font(.system(size: 16))
-                    .foregroundColor(isSearchActive ? .white : .gray)
-                    .padding(.leading, 8)
-                
-                TextField("채팅 검색", text: $searchText)
-                    .font(.system(size: 16))
-                    .foregroundColor(.white)
-                    .padding(.vertical, 10)
-                    .onTapGesture {
-                        isSearchActive = true
-                    }
-                
-                if !searchText.isEmpty {
-                    Button(action: {
-                        searchText = ""
-                    }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.system(size: 16))
-                            .foregroundColor(.gray)
-                    }
-                    .padding(.trailing, 8)
-                }
-                
-                if isSearchActive {
-                    Button(action: {
-                        isSearchActive = false
-                        searchText = ""
-                        hideKeyboard()
-                    }) {
-                        Text("취소")
-                            .font(.system(size: 16))
-                            .foregroundColor(.accentTeal)
-                    }
-                    .padding(.trailing, 8)
-                }
-            }
-            .padding(.horizontal, 8)
-            .background(Color.darkBackgroundSecondary)
-            .cornerRadius(10)
-            .padding(.horizontal, 20)
-            .animation(.easeInOut(duration: 0.2), value: isSearchActive)
-        }
-        .padding(.top, 10)
-        .padding(.bottom, 8)
-        .background(Color.darkBackground)
-    }
-    
-    // 키보드 숨기기
-    private func hideKeyboard() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-    }
-}
-
-// 향상된 채팅 카테고리 스크롤
-struct EnhancedChatCategoryScroll: View {
-    let categories: [String]
-    @Binding var activeTab: Int
-    @Namespace private var animation
-    
-    var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 12) {
-                ForEach(0..<categories.count, id: \.self) { index in
-                    Button(action: {
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                            activeTab = index
-                        }
-                    }) {
-                        VStack(spacing: 8) {
-                            Text(categories[index])
-                                .font(.system(size: 14, weight: activeTab == index ? .semibold : .regular))
-                                .foregroundColor(activeTab == index ? .white : .gray)
-                                .padding(.horizontal, 16)
-                                .padding(.vertical, 8)
-                                .background(
-                                    ZStack {
-                                        if activeTab == index {
-                                            RoundedRectangle(cornerRadius: 16)
-                                                .fill(
-                                                    LinearGradient(
-                                                        gradient: Gradient(colors: [Color.primaryPurple.opacity(0.3), Color.primaryBlue.opacity(0.3)]),
-                                                        startPoint: .leading,
-                                                        endPoint: .trailing
-                                                    )
-                                                )
-                                                .matchedGeometryEffect(id: "category", in: animation)
-                                        }
-                                    }
-                                )
-                        }
-                    }
-                }
-            }
-            .padding(.horizontal, 20)
-            .padding(.vertical, 8)
-        }
-        .background(Color.darkBackground)
-    }
-}
-
-// 향상된 아바타 스크롤 뷰
-struct EnhancedAvatarScrollView: View {
-    let avatars: [AvatarData]
-    let onAvatarTap: (AvatarData) -> Void
-    let onNewAvatarTap: () -> Void
-    
-    var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 20) {
-                // 아바타 리스트
-                ForEach(avatars) { avatar in
-                    AvatarItem(avatar: avatar) {
-                        onAvatarTap(avatar)
-                    }
-                }
-                
-                // 새 아바타 버튼
-                Button(action: onNewAvatarTap) {
-                    VStack(spacing: 8) {
-                        ZStack {
-                            Circle()
-                                .stroke(Color.gray.opacity(0.5), lineWidth: 1)
-                                .frame(width: 60, height: 60)
-                            
-                            Image(systemName: "plus")
-                                .font(.system(size: 24))
-                                .foregroundColor(.gray)
-                        }
-                        
-                        Text("새 아바타")
-                            .font(.system(size: 12))
-                            .foregroundColor(.gray)
-                    }
-                    .frame(width: 80)
-                }
-            }
-            .padding(.horizontal, 20)
-        }
-    }
-    
-    // 아바타 아이템
-    struct AvatarItem: View {
-        let avatar: AvatarData
-        let onTap: () -> Void
-        
-        var body: some View {
-            Button(action: onTap) {
-                VStack(spacing: 8) {
-                    ZStack {
-                        Circle()
-                            .fill(
-                                LinearGradient(
-                                    gradient: Gradient(colors: [avatar.color, avatar.color.opacity(0.7)]),
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
-                                )
-                            )
-                            .frame(width: 60, height: 60)
-                        
-                        Image(systemName: avatar.icon)
-                            .font(.system(size: 24))
-                            .foregroundColor(.white)
-                    }
-                    
-                    Text(avatar.name)
-                        .font(.system(size: 12))
-                        .foregroundColor(.white)
-                        .lineLimit(1)
-                    
-                    Text(avatar.lastUsed)
-                        .font(.system(size: 10))
-                        .foregroundColor(.gray)
-                        .lineLimit(1)
-                }
-                .frame(width: 80)
-            }
-        }
-    }
-}
-
-// 향상된 채팅 목록 아이템
-struct EnhancedChatListItem: View {
-    let chat: ChatData
-    let onTap: () -> Void
-    @State private var isPressed = false
-    
-    var body: some View {
-        Button(action: onTap) {
-            HStack(spacing: 12) {
-                // 아바타 이미지
-                ZStack {
-                    Circle()
-                        .fill(
-                            LinearGradient(
-                                gradient: Gradient(colors: [chat.color, chat.color.opacity(0.7)]),
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
-                        .frame(width: 50, height: 50)
-                    
-                    Image(systemName: chat.avatarIcon)
-                        .font(.system(size: 20))
-                        .foregroundColor(.white)
-                    
-                    // 온라인 상태 표시
-                    if chat.isOnline {
-                        Circle()
-                            .fill(Color.green)
-                            .frame(width: 12, height: 12)
-                            .overlay(
-                                Circle()
-                                    .stroke(Color.darkBackground, lineWidth: 2)
-                            )
-                            .offset(x: 18, y: 18)
-                    }
-                }
-                
-                // 채팅 정보
-                VStack(alignment: .leading, spacing: 4) {
-                    HStack {
-                        Text(chat.name)
-                            .font(.system(size: 16, weight: .semibold))
-                            .foregroundColor(.white)
-                        
-                        Spacer()
-                        
-                        Text(chat.time)
-                            .font(.system(size: 12))
-                            .foregroundColor(.gray)
-                    }
-                    
-                    HStack {
-                        Text(chat.preview)
-                            .font(.system(size: 14))
-                            .foregroundColor(.gray)
-                            .lineLimit(1)
-                        
-                        Spacer()
-                        
-                        // 안읽은 메시지 수 표시
-                        if chat.unreadCount > 0 {
-                            Text("\(chat.unreadCount)")
-                                .font(.system(size: 12, weight: .semibold))
-                                .foregroundColor(.white)
-                                .frame(width: 20, height: 20)
-                                .background(chat.color)
-                                .clipShape(Circle())
-                        }
-                    }
-                }
-            }
-            .padding(.horizontal, 20)
-            .padding(.vertical, 12)
-            .background(
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(Color.darkBackgroundSecondary.opacity(isPressed ? 0.5 : 0.3))
-            )
-            .scaleEffect(isPressed ? 0.98 : 1.0)
-            .padding(.horizontal, 16)
-            .contentShape(Rectangle())
-        }
-        .buttonStyle(PlainButtonStyle())
-        .onTapGesture {
-            withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
-                isPressed = true
-            }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
-                    isPressed = false
-                }
-                onTap()
-            }
-        }
-    }
-}
-
-// 새 채팅 뷰
-struct NewChatView: View {
-    @Binding var isPresented: Bool
-    @State private var searchText = ""
-    
-    // 샘플 추천 아바타 데이터
-    let recommendedAvatars: [AvatarData] = [
-        AvatarData(id: 4, name: "소설작가", icon: "book.fill", color: .primaryBlue, lastUsed: "신규"),
-        AvatarData(id: 5, name: "여행가이드", icon: "airplane", color: .accentPink, lastUsed: "신규"),
-        AvatarData(id: 6, name: "음악코치", icon: "music.note", color: .accentTeal, lastUsed: "신규"),
-        AvatarData(id: 7, name: "요리사", icon: "flame.fill", color: .accentYellow, lastUsed: "신규")
-    ]
-    
-    var body: some View {
-        ZStack {
-            // 배경 블러
-            Color.black.opacity(0.4)
-                .edgesIgnoringSafeArea(.all)
-                .onTapGesture {
-                    withAnimation {
-                        isPresented = false
-                    }
-                }
-            
-            // 실제 시트 콘텐츠
-            VStack(spacing: 0) {
-                // 핸들
-                RoundedRectangle(cornerRadius: 2.5)
-                    .fill(Color.gray.opacity(0.6))
-                    .frame(width: 36, height: 5)
-                    .padding(.top, 10)
-                    .padding(.bottom, 20)
-                
-                // 타이틀
-                Text("새 채팅")
-                    .font(.system(size: 20, weight: .bold))
-                    .foregroundColor(.white)
-                    .padding(.bottom, 16)
-                
-                // 검색 바
-                HStack {
-                    Image(systemName: "magnifyingglass")
-                        .font(.system(size: 16))
-                        .foregroundColor(.gray)
-                        .padding(.leading, 8)
-                    
-                    TextField("아바타 검색", text: $searchText)
-                        .font(.system(size: 16))
-                        .foregroundColor(.white)
-                        .padding(.vertical, 10)
-                    
-                    if !searchText.isEmpty {
-                        Button(action: {
-                            searchText = ""
-                        }) {
-                            Image(systemName: "xmark.circle.fill")
-                                .font(.system(size: 16))
-                                .foregroundColor(.gray)
-                        }
-                        .padding(.trailing, 8)
-                    }
-                }
-                .background(Color.darkBackgroundSecondary)
-                .cornerRadius(10)
-                .padding(.horizontal, 20)
-                .padding(.bottom, 20)
-                
-                // 추천 아바타
-                VStack(alignment: .leading, spacing: 16) {
-                    Text("추천 아바타")
-                        .font(.system(size: 18, weight: .semibold))
-                        .foregroundColor(.white)
-                        .padding(.leading, 20)
-                    
-                    // 아바타 그리드 보기
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
-                        ForEach(recommendedAvatars) { avatar in
-                            RecommendedAvatarItem(avatar: avatar)
-                        }
-                    }
-                    .padding(.horizontal, 20)
-                    
-                    // 커스텀 아바타 만들기 버튼
-                    Button(action: {
-                        // 커스텀 아바타 만들기 액션
-                    }) {
-                        HStack {
-                            Image(systemName: "plus.circle.fill")
-                                .font(.system(size: 20))
-                            
-                            Text("커스텀 아바타 만들기")
-                                .font(.system(size: 16, weight: .medium))
-                        }
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 14)
-                        .background(
-                            LinearGradient(
-                                gradient: Gradient(colors: [Color.primaryPurple, Color.primaryBlue]),
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
-                        )
-                        .cornerRadius(16)
-                        .padding(.horizontal, 20)
-                        .padding(.top, 20)
-                    }
-                }
-                
-                Spacer()
-            }
-            .padding(.top, 10)
-            .background(Color.darkBackground)
-            .cornerRadius(24, corners: [.topLeft, .topRight])
-            .frame(height: 500)
-            .frame(maxWidth: .infinity)
-            .transition(.move(edge: .bottom))
-            .offset(y: isPresented ? 0 : 500)
-        }
-        .ignoresSafeArea(.all, edges: .bottom)
-    }
-    
-    // 추천 아바타 아이템
-    struct RecommendedAvatarItem: View {
-        let avatar: AvatarData
-        @State private var isPressed = false
-        
-        var body: some View {
-            Button(action: {
-                // 아바타 선택 액션
-            }) {
-                HStack(spacing: 12) {
-                    // 아바타 이미지
-                    ZStack {
-                        Circle()
-                            .fill(
-                                LinearGradient(
-                                    gradient: Gradient(colors: [avatar.color, avatar.color.opacity(0.7)]),
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
-                                )
-                            )
-                            .frame(width: 40, height: 40)
-                        
-                        Image(systemName: avatar.icon)
-                            .font(.system(size: 16))
-                            .foregroundColor(.white)
-                    }
-                    
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(avatar.name)
-                            .font(.system(size: 14, weight: .medium))
-                            .foregroundColor(.white)
-                        
-                        Text(avatar.lastUsed)
-                            .font(.system(size: 12))
-                            .foregroundColor(.gray)
-                    }
-                }
-                .padding(12)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(Color.darkBackgroundSecondary.opacity(isPressed ? 0.5 : 0.3))
-                )
-                .scaleEffect(isPressed ? 0.98 : 1.0)
-            }
-            .buttonStyle(PlainButtonStyle())
-            .onTapGesture {
-                withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
-                    isPressed = true
-                }
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
-                        isPressed = false
-                    }
-                }
-            }
-        }
-    }
-}
-
-// 채팅 상세 뷰
-struct ChatDetailView: View {
-    let chat: ChatData
-    @Binding var isPresented: Bool
     @State private var messageText = ""
-    @State private var messages: [MessageData] = []
-    @State private var showOptions = false
+    @State private var messages: [ChatMessageData] = []
     @State private var isTyping = false
-    @State private var isSending = false
+    @State private var showSidebar = false
+    @State private var selectedCategory = "AI 어시스턴트"
+    @State private var showQuickTools = false
+    
+    // 카테고리
+    let categories = ["AI 어시스턴트", "패션 조언", "코디 추천", "트렌드", "쇼핑"]
+    
+    // 샘플 메시지 생성 - ChatGPT 스타일 첫 메시지
+    private let welcomeMessage = ChatMessageData(
+        id: 1, 
+        text: "안녕하세요! 오늘 어떤 도움이 필요하신가요?", 
+        isFromMe: false, 
+        timestamp: Date()
+    )
     
     var body: some View {
         ZStack {
             // 배경
-            Color.darkBackground.edgesIgnoringSafeArea(.all)
+            Color.darkBackground.ignoresSafeArea()
             
             VStack(spacing: 0) {
-                // 채팅 헤더
-                ChatDetailHeaderView(
-                    chat: chat,
-                    onBack: {
-                        isPresented = false
-                    },
-                    onOptions: {
-                        showOptions = true
-                    }
-                )
+                // 헤더
+                chatHeaderView
                 
-                // 메시지 리스트
-                ScrollView {
-                    VStack(spacing: 16) {
-                        // 시스템 메시지
-                        HStack {
-                            Spacer()
+                // 메시지 영역
+                ScrollViewReader { scrollView in
+                    ScrollView {
+                        VStack(spacing: 18) {
+                            // 상단 카테고리 선택 영역
+                            categoryScrollView
+                                .padding(.vertical, 10)
+                                .padding(.horizontal, 10)
                             
-                            Text("오늘")
-                                .font(.system(size: 12))
-                                .foregroundColor(.gray)
-                                .padding(.vertical, 4)
-                                .padding(.horizontal, 12)
-                                .background(Color.darkBackgroundSecondary.opacity(0.6))
-                                .cornerRadius(10)
-                            
-                            Spacer()
-                        }
-                        .padding(.vertical, 10)
-                        
-                        // 샘플 메시지
-                        ForEach(sampleMessages) { message in
-                            ChatMessageBubble(message: message, avatarColor: chat.color)
-                        }
-                        
-                        // 실제 주고받은 메시지
-                        ForEach(messages) { message in
-                            ChatMessageBubble(message: message, avatarColor: chat.color)
-                        }
-                        
-                        // 상대방 입력 중 표시
-                        if isTyping {
-                            HStack {
-                                // 아바타 이미지
-                                Circle()
-                                    .fill(chat.color)
-                                    .frame(width: 30, height: 30)
-                                    .overlay(
-                                        Image(systemName: chat.avatarIcon)
-                                            .font(.system(size: 14))
-                                            .foregroundColor(.white)
-                                    )
-                                
-                                // 입력 중 애니메이션
-                                HStack(spacing: 4) {
-                                    ForEach(0..<3) { index in
-                                        Circle()
-                                            .fill(Color.gray)
-                                            .frame(width: 6, height: 6)
-                                            .opacity(0.5)
-                                            .scaleEffect(isTyping ? 1.0 : 0.8)
-                                            .animation(
-                                                Animation
-                                                    .easeInOut(duration: 0.4)
-                                                    .repeatForever()
-                                                    .delay(Double(index) * 0.2),
-                                                value: isTyping
-                                            )
+                            // 메시지 목록
+                            LazyVStack(spacing: 18) {
+                                if messages.isEmpty {
+                                    // 웰컴 카드 - 첫 방문 시
+                                    welcomeCardView
+                                        .padding(.horizontal, 16)
+                                        .padding(.top, 10)
+                                } else {
+                                    // 메시지 버블
+                                    ForEach(messages) { message in
+                                        MessageBubble(message: message, chatColor: .primaryPurple)
+                                            .id(message.id)
                                     }
                                 }
-                                .padding(.vertical, 8)
-                                .padding(.horizontal, 12)
-                                .background(Color.darkBackgroundSecondary)
-                                .cornerRadius(16)
                                 
-                                Spacer()
+                                // 입력 중 표시
+                                if isTyping {
+                                    HStack(alignment: .bottom, spacing: 8) {
+                                        // 아바타 아이콘
+                                        ZStack {
+                                            Circle()
+                                                .fill(
+                                                    LinearGradient(
+                                                        gradient: Gradient(colors: [Color.primaryPurple, Color.primaryPurple.opacity(0.7)]),
+                                                        startPoint: .topLeading,
+                                                        endPoint: .bottomTrailing
+                                                    )
+                                                )
+                                                .frame(width: 32, height: 32)
+                                            
+                                            Image(systemName: "bubble.left.fill")
+                                                .font(.system(size: 16))
+                                                .foregroundColor(.white)
+                                        }
+                                        
+                                        // 입력 중 애니메이션
+                                        HStack(spacing: 4) {
+                                            ForEach(0..<3) { i in
+                                                Circle()
+                                                    .fill(Color.gray)
+                                                    .frame(width: 7, height: 7)
+                                                    .opacity(0.6)
+                                                    .scaleEffect(isTyping ? 1.2 : 0.8)
+                                                    .animation(Animation.easeInOut(duration: 0.6).repeatForever().delay(Double(i) * 0.2), value: isTyping)
+                                            }
+                                        }
+                                        .padding(.vertical, 14)
+                                        .padding(.horizontal, 18)
+                                        .background(Color.darkBackgroundSecondary)
+                                        .cornerRadius(20)
+                                        
+                                        Spacer()
+                                    }
+                                    .padding(.horizontal, 16)
+                                    .id("typing")
+                                }
+                                
+                                // 스크롤 위치 조정을 위한 빈 뷰
+                                Color.clear
+                                    .frame(height: 1)
+                                    .id("bottomID")
                             }
-                            .padding(.horizontal, 20)
+                            .padding(.horizontal, 4)
+                            
+                            Spacer(minLength: 60)
                         }
-                        
-                        // 하단 여백
-                        Spacer(minLength: 60)
                     }
-                    .padding(.vertical, 8)
+                    .onAppear {
+                        // 메시지가 추가되면 스크롤 아래로
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            withAnimation {
+                                scrollView.scrollTo("bottomID", anchor: .bottom)
+                            }
+                        }
+                    }
+                    .onChange(of: messages.count) { _ in
+                        // 새 메시지가 추가되면 스크롤 아래로
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            withAnimation {
+                                scrollView.scrollTo("bottomID", anchor: .bottom)
+                            }
+                        }
+                    }
                 }
                 
-                // 메시지 입력 영역
-                MessageInputView(
-                    messageText: $messageText,
-                    onSend: sendMessage
-                )
+                // 퀵 액세스 툴바 (확장 시)
+                if showQuickTools {
+                    quickAccessToolbarView
+                        .transition(.move(edge: .bottom))
+                }
+                
+                // 입력 영역
+                messageInputView
             }
             
-            // 채팅 옵션 시트
-            if showOptions {
-                ChatOptionsView(isPresented: $showOptions)
-            }
+            // 사이드 메뉴
+            sideMenuView
         }
+        .animation(.spring(), value: showQuickTools)
+        .animation(.spring(), value: showSidebar)
         .onAppear {
-            // 입력 중 시뮬레이션
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                isTyping = true
-                
-                // 메시지 응답 시뮬레이션
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                    isTyping = false
-                    messages.append(
-                        MessageData(
-                            id: UUID().uuidString,
-                            content: "안녕하세요! 무엇을 도와드릴까요?",
-                            isFromMe: false,
-                            timestamp: Date()
-                        )
-                    )
+            // 웰컴 메시지 표시
+            if messages.isEmpty {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    isTyping = true
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        withAnimation {
+                            isTyping = false
+                            messages.append(welcomeMessage)
+                        }
+                    }
                 }
             }
         }
     }
     
-    // 메시지 전송 함수
-    func sendMessage() {
-        guard !messageText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
-        
-        // 내 메시지 추가
-        let message = MessageData(
-            id: UUID().uuidString,
-            content: messageText,
-            isFromMe: true,
-            timestamp: Date()
-        )
-        
-        messages.append(message)
-        messageText = ""
-        isSending = true
-        
-        // 상대방 응답 시뮬레이션
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            isSending = false
-            isTyping = true
+    // MARK: - 컴포넌트 뷰
+    
+    // 채팅 헤더 뷰
+    var chatHeaderView: some View {
+        HStack {
+            // 타이틀
+            Text("채팅")
+                .font(.system(size: 22, weight: .bold))
+                .foregroundColor(.white)
+                .padding(.leading, 16)
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                isTyping = false
-                
-                let responses = [
-                    "네, 물론이죠. 더 자세히 설명해주시겠어요?",
-                    "도움이 필요하신 부분이 있으신가요?",
-                    "흥미로운 질문이네요. 생각해볼게요.",
-                    "알겠습니다. 그에 대해 더 알려드릴게요.",
-                    "좋은 질문이에요. 제가 도와드릴게요."
-                ]
-                
-                let responseMessage = MessageData(
-                    id: UUID().uuidString,
-                    content: responses.randomElement() ?? "알겠습니다.",
-                    isFromMe: false,
-                    timestamp: Date()
-                )
-                
-                messages.append(responseMessage)
+            Spacer()
+            
+            // 메뉴 버튼
+            Button(action: {
+                withAnimation(.spring()) {
+                    showSidebar.toggle()
+                }
+            }) {
+                Image(systemName: "line.horizontal.3")
+                    .font(.system(size: 20))
+                    .foregroundColor(.white)
+                    .padding(8)
+                    .background(Color.darkBackgroundSecondary.opacity(0.8))
+                    .clipShape(Circle())
             }
+            .padding(.trailing, 16)
+        }
+        .padding(.vertical, 14)
+        .background(Color.darkBackground)
+    }
+    
+    // 카테고리 스크롤 뷰
+    var categoryScrollView: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 12) {
+                ForEach(categories, id: \.self) { category in
+                    Button(action: {
+                        withAnimation {
+                            selectedCategory = category
+                            // 카테고리 변경 시 새 프롬프트 추가
+                            messages = []
+                            isTyping = true
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                withAnimation {
+                                    isTyping = false
+                                    messages.append(ChatMessageData(
+                                        id: 1, 
+                                        text: "\(category)입니다. 무엇을 도와드릴까요?", 
+                                        isFromMe: false, 
+                                        timestamp: Date()
+                                    ))
+                                }
+                            }
+                        }
+                    }) {
+                        Text(category)
+                            .font(.system(size: 15, weight: selectedCategory == category ? .semibold : .regular))
+                            .foregroundColor(selectedCategory == category ? .white : .gray)
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 16)
+                            .background(
+                                selectedCategory == category ?
+                                    Capsule().fill(Color.primaryPurple.opacity(0.3)) :
+                                    Capsule().fill(Color.darkBackgroundSecondary)
+                            )
+                    }
+                }
+            }
+            .padding(.horizontal, 6)
         }
     }
     
-    // 샘플 메시지
-    var sampleMessages: [MessageData] {
-        [
-            MessageData(
-                id: "1",
-                content: "안녕하세요!",
-                isFromMe: true,
-                timestamp: Date().addingTimeInterval(-3600)
-            ),
-            MessageData(
-                id: "2",
-                content: "반갑습니다! 저는 \(chat.name)입니다. 어떻게 도와드릴까요?",
-                isFromMe: false,
-                timestamp: Date().addingTimeInterval(-3500)
-            )
-        ]
-    }
-}
-
-// 메시지 버블 뷰
-struct ChatMessageBubble: View {
-    let message: MessageData
-    let avatarColor: Color
-    
-    var body: some View {
-        HStack(alignment: .bottom, spacing: 12) {
-            if !message.isFromMe {
-                // 상대방 아바타 (메시지가 내가 보낸 것이 아닐 때만)
-                Circle()
-                    .fill(avatarColor)
-                    .frame(width: 30, height: 30)
+    // 메시지 입력 뷰
+    var messageInputView: some View {
+        VStack(spacing: 0) {
+            // 구분선
+            Rectangle()
+                .fill(Color.gray.opacity(0.2))
+                .frame(height: 0.5)
+            
+            HStack(spacing: 12) {
+                // 첨부 버튼
+                Button(action: {
+                    withAnimation {
+                        showQuickTools.toggle()
+                    }
+                }) {
+                    Image(systemName: showQuickTools ? "chevron.down" : "plus.circle.fill")
+                        .font(.system(size: 22))
+                        .foregroundColor(.primaryPurple)
+                        .frame(width: 32, height: 32)
+                }
+                .padding(.leading, 4)
                 
-                // 메시지 내용
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(message.content)
+                // 텍스트 입력
+                ZStack(alignment: .trailing) {
+                    TextField("메시지 입력...", text: $messageText)
                         .font(.system(size: 16))
                         .foregroundColor(.white)
                         .padding(.horizontal, 14)
                         .padding(.vertical, 10)
                         .background(Color.darkBackgroundSecondary)
-                        .cornerRadius(18, corners: [.topRight, .bottomLeft, .bottomRight])
+                        .cornerRadius(20)
                     
-                    // 시간 표시
-                    Text(formattedTime(from: message.timestamp))
-                        .font(.system(size: 10))
-                        .foregroundColor(.gray)
-                        .padding(.leading, 4)
+                    if !messageText.isEmpty {
+                        Button(action: {
+                            messageText = ""
+                        }) {
+                            Image(systemName: "xmark.circle.fill")
+                                .foregroundColor(.gray)
+                                .padding(.trailing, 14)
+                        }
+                    }
                 }
                 
-                Spacer()
-            } else {
-                // 내 메시지
+                // 전송 버튼
+                Button(action: sendMessage) {
+                    Image(systemName: "arrow.up.circle.fill")
+                        .font(.system(size: 28))
+                        .foregroundColor(messageText.isEmpty ? .gray : .primaryPurple)
+                }
+                .disabled(messageText.isEmpty)
+                .padding(.trailing, 8)
+            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 10)
+            .background(Color.darkBackground)
+        }
+    }
+    
+    // 웰컴 카드 뷰
+    var welcomeCardView: some View {
+        VStack(spacing: 16) {
+            // 아이콘 및 제목
+            VStack(spacing: 12) {
+                Image(systemName: "bubble.left.and.bubble.right.fill")
+                    .font(.system(size: 36))
+                    .foregroundColor(.primaryPurple)
+                
+                Text("ARU 챗 어시스턴트")
+                    .font(.system(size: 20, weight: .bold))
+                    .foregroundColor(.white)
+                
+                Text("AI를 통해 패션, 쇼핑, 스타일링에 대한 도움을 받아보세요")
+                    .font(.system(size: 15))
+                    .foregroundColor(.gray)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 20)
+            }
+            .padding(.vertical, 20)
+            
+            // 주요 기능 소개
+            VStack(spacing: 16) {
+                featureRow(icon: "tshirt", title: "맞춤 스타일링", description: "당신의 스타일과 체형에 맞는 패션 조언을 받아보세요")
+                featureRow(icon: "cart", title: "쇼핑 도우미", description: "원하는 아이템을 찾고 합리적인 가격으로 구매하세요")
+                featureRow(icon: "chart.bar", title: "트렌드 분석", description: "최신 패션 트렌드와 인기 아이템을 확인하세요")
+            }
+            .padding(.vertical, 10)
+            
+            // 시작 버튼
+            Button(action: {
+                // 아무것도 안함 - 사용자가 메시지를 입력하도록 유도
+            }) {
+                Text("메시지를 입력하여 시작하세요")
+                    .font(.system(size: 16, weight: .medium))
+                    .foregroundColor(.white)
+                    .padding(.vertical, 12)
+                    .padding(.horizontal, 24)
+                    .background(
+                        RoundedRectangle(cornerRadius: 24)
+                            .fill(Color.primaryPurple.opacity(0.8))
+                    )
+            }
+            .padding(.top, 10)
+            .padding(.bottom, 20)
+        }
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color.darkBackgroundSecondary.opacity(0.8))
+        )
+    }
+    
+    // 기능 소개 행
+    func featureRow(icon: String, title: String, description: String) -> some View {
+        HStack(spacing: 14) {
+            Image(systemName: icon)
+                .font(.system(size: 20))
+                .foregroundColor(.primaryPurple)
+                .frame(width: 34, height: 34)
+                .background(Color.primaryPurple.opacity(0.2))
+                .clipShape(Circle())
+            
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title)
+                    .font(.system(size: 16, weight: .medium))
+                    .foregroundColor(.white)
+                
+                Text(description)
+                    .font(.system(size: 14))
+                    .foregroundColor(.gray)
+                    .lineLimit(2)
+            }
+            
+            Spacer()
+        }
+        .padding(.horizontal, 20)
+    }
+    
+    // 퀵 액세스 툴바
+    var quickAccessToolbarView: some View {
+        VStack(spacing: 0) {
+            // 구분선
+            Rectangle()
+                .fill(Color.gray.opacity(0.2))
+                .frame(height: 0.5)
+            
+            // 툴바 버튼들
+            HStack(spacing: 20) {
+                quickToolButton(icon: "photo", label: "이미지")
+                quickToolButton(icon: "camera", label: "카메라")
+                quickToolButton(icon: "doc", label: "파일")
+                quickToolButton(icon: "location", label: "위치")
+                quickToolButton(icon: "paintpalette", label: "스타일")
+            }
+            .padding(.vertical, 16)
+            .padding(.horizontal, 20)
+            .background(Color.darkBackground)
+        }
+    }
+    
+    // 퀵 툴 버튼
+    func quickToolButton(icon: String, label: String) -> some View {
+        Button(action: {
+            // 각 도구 기능 구현
+            withAnimation {
+                showQuickTools = false
+            }
+        }) {
+            VStack(spacing: 6) {
+                Image(systemName: icon)
+                    .font(.system(size: 20))
+                    .foregroundColor(.white)
+                    .frame(width: 40, height: 40)
+                    .background(Color.primaryPurple.opacity(0.2))
+                    .clipShape(Circle())
+                
+                Text(label)
+                    .font(.system(size: 12))
+                    .foregroundColor(.gray)
+            }
+            .frame(maxWidth: .infinity)
+        }
+    }
+    
+    // 사이드 메뉴 뷰
+    var sideMenuView: some View {
+        ZStack(alignment: .trailing) {
+            if showSidebar {
+                // 배경 오버레이
+                Color.black.opacity(0.4)
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        withAnimation(.spring()) {
+                            showSidebar = false
+                        }
+                    }
+                
+                // 사이드 메뉴 패널
+                VStack(spacing: 0) {
+                    // 헤더
+                    HStack {
+                        Text("설정")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.white)
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            withAnimation(.spring()) {
+                                showSidebar = false
+                            }
+                        }) {
+                            Image(systemName: "xmark")
+                                .font(.system(size: 20))
+                                .foregroundColor(.gray)
+                        }
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 16)
+                    
+                    // 구분선
+                    Rectangle()
+                        .fill(Color.gray.opacity(0.3))
+                        .frame(height: 0.5)
+                    
+                    // 메뉴 항목
+                    ScrollView {
+                        VStack(spacing: 0) {
+                            menuItem(icon: "person.crop.circle", title: "프로필 설정")
+                            menuItem(icon: "gear", title: "앱 설정")
+                            menuItem(icon: "bell", title: "알림 설정")
+                            menuItem(icon: "lock", title: "개인정보 및 보안")
+                            menuItem(icon: "ellipsis.bubble", title: "챗 기록 관리")
+                            menuItem(icon: "square.and.arrow.up", title: "대화 내보내기")
+                            menuItem(icon: "trash", title: "대화 초기화")
+                        }
+                    }
+                    
+                    Spacer()
+                    
+                    // 앱 버전
+                    VStack(spacing: 5) {
+                        Text("ARU 챗 버전 1.0.2")
+                            .font(.system(size: 14))
+                            .foregroundColor(.gray)
+                        
+                        Text("© 2025 ARU Inc. All rights reserved.")
+                            .font(.system(size: 12))
+                            .foregroundColor(.gray.opacity(0.7))
+                    }
+                    .padding(.bottom, 30)
+                }
+                .frame(width: UIScreen.main.bounds.width * 0.75)
+                .background(Color.darkBackground)
+                .transition(.move(edge: .trailing))
+            }
+        }
+    }
+    
+    // 메뉴 항목
+    func menuItem(icon: String, title: String) -> some View {
+        Button(action: {
+            // 메뉴 항목 액션
+        }) {
+            HStack(spacing: 14) {
+                Image(systemName: icon)
+                    .font(.system(size: 18))
+                    .foregroundColor(.white)
+                    .frame(width: 24, height: 24)
+                
+                Text(title)
+                    .font(.system(size: 16))
+                    .foregroundColor(.white)
+                
                 Spacer()
                 
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 14))
+                    .foregroundColor(.gray)
+            }
+            .padding(.vertical, 14)
+            .padding(.horizontal, 20)
+        }
+    }
+    
+    // MARK: - 기능 메서드
+    
+    // 메시지 전송
+    func sendMessage() {
+        guard !messageText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
+        
+        // 사용자 메시지 추가
+        let userMessage = ChatMessageData(
+            id: (messages.last?.id ?? 0) + 1,
+            text: messageText,
+            isFromMe: true,
+            timestamp: Date()
+        )
+        
+        withAnimation {
+            messages.append(userMessage)
+            messageText = ""
+        }
+        
+        // AI 응답 시뮬레이션
+        isTyping = true
+        
+        // 챗봇 응답 후 타이핑 표시기 제거
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            let responseText: String
+            
+            // 카테고리별 응답
+            switch selectedCategory {
+            case "패션 조언":
+                responseText = "패션에 관한 질문이군요! 당신의 스타일과 체형에 맞는 제안을 해드릴게요. 더 구체적인 정보를 알려주시면 더 정확한 조언이 가능합니다."
+            case "코디 추천":
+                responseText = "코디 추천을 원하시는군요! 어떤 상황이나 분위기에 맞는 코디를 찾고 계신가요? TPO에 맞는 최적의 스타일을 제안해 드릴게요."
+            case "트렌드":
+                responseText = "최신 트렌드에 관심이 있으시군요! 현재 2025년 패션 트렌드는 지속가능한 패션과 Y2K 스타일의 재해석이 주목받고 있어요. 어떤 트렌드에 관심이 있으신가요?"
+            case "쇼핑":
+                responseText = "쇼핑 도움이 필요하신가요? 어떤 아이템을 찾고 계신지 알려주시면, 합리적인 가격대와 품질이 좋은 제품을 추천해 드릴게요."
+            default:
+                responseText = "질문해 주셔서 감사합니다! 패션, 스타일링, 트렌드, 쇼핑 등 다양한 주제에 대해 도움을 드릴 수 있어요. 더 구체적인 질문이 있으시면 언제든지 물어보세요."
+            }
+            
+            withAnimation {
+                isTyping = false
+                messages.append(ChatMessageData(
+                    id: (messages.last?.id ?? 0) + 1,
+                    text: responseText,
+                    isFromMe: false,
+                    timestamp: Date()
+                ))
+            }
+        }
+    }
+}
+
+// 메시지 버블 뷰
+struct MessageBubble: View {
+    let message: ChatMessageData
+    let chatColor: Color
+    
+    var body: some View {
+        HStack(alignment: .bottom, spacing: 8) {
+            if message.isFromMe {
+                Spacer()
+                
+                // 사용자 메시지
                 VStack(alignment: .trailing, spacing: 4) {
-                    Text(message.content)
+                    Text(message.text)
                         .font(.system(size: 16))
                         .foregroundColor(.white)
                         .padding(.horizontal, 14)
                         .padding(.vertical, 10)
                         .background(
                             LinearGradient(
-                                gradient: Gradient(colors: [Color.primaryPurple.opacity(0.9), Color.primaryBlue.opacity(0.9)]),
+                                gradient: Gradient(colors: [Color.primaryPurple, Color.primaryBlue]),
                                 startPoint: .topLeading,
                                 endPoint: .bottomTrailing
                             )
                         )
                         .cornerRadius(18, corners: [.topLeft, .topRight, .bottomLeft])
+                        .cornerRadius(4, corners: [.bottomRight])
                     
-                    // 시간 표시
-                    Text(formattedTime(from: message.timestamp))
-                        .font(.system(size: 10))
+                    Text(formatTime(date: message.timestamp))
+                        .font(.system(size: 12))
                         .foregroundColor(.gray)
-                        .padding(.trailing, 4)
                 }
+            } else {
+                // AI 메시지
+                HStack(alignment: .bottom, spacing: 8) {
+                    // 아바타 아이콘
+                    ZStack {
+                        Circle()
+                            .fill(
+                                LinearGradient(
+                                    gradient: Gradient(colors: [chatColor, chatColor.opacity(0.7)]),
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
+                            )
+                            .frame(width: 32, height: 32)
+                        
+                        Image(systemName: "bubble.left.fill")
+                            .font(.system(size: 16))
+                            .foregroundColor(.white)
+                    }
+                    
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(message.text)
+                            .font(.system(size: 16))
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 14)
+                            .padding(.vertical, 10)
+                            .background(Color.darkBackgroundSecondary)
+                            .cornerRadius(18, corners: [.topRight, .bottomRight, .bottomLeft])
+                            .cornerRadius(4, corners: [.topLeft])
+                        
+                        Text(formatTime(date: message.timestamp))
+                            .font(.system(size: 12))
+                            .foregroundColor(.gray)
+                    }
+                }
+                
+                Spacer()
             }
         }
-        .padding(.horizontal, 20)
-        .id(message.id) // 스크롤 식별용
+        .padding(.horizontal, 16)
     }
     
     // 시간 포맷팅
-    private func formattedTime(from date: Date) -> String {
+    private func formatTime(date: Date) -> String {
         let formatter = DateFormatter()
         formatter.timeStyle = .short
         return formatter.string(from: date)
     }
 }
 
-// 메시지 입력 뷰
-struct MessageInputView: View {
-    @Binding var messageText: String
-    let onSend: () -> Void
-    @FocusState private var isFocused: Bool
+// MARK: - Extensions
+extension View {
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        clipShape(RoundedCorner(radius: radius, corners: corners))
+    }
+}
+
+struct RoundedCorner: Shape {
+    var radius: CGFloat = .infinity
+    var corners: UIRectCorner = .allCorners
     
-    var body: some View {
-        VStack(spacing: 0) {
-            Divider()
-                .background(Color.gray.opacity(0.3))
-            
-            HStack(spacing: 12) {
-                // 첨부 파일 버튼
-                Button(action: {
-                    // 첨부 파일 액션
-                }) {
-                    Image(systemName: "plus.circle.fill")
-                        .font(.system(size: 24))
-                        .foregroundColor(.gray)
-                }
-                
-                // 메시지 입력 필드
-                TextField("메시지 입력...", text: $messageText)
-                    .font(.system(size: 16))
-                    .padding(10)
-                    .background(Color.darkBackgroundSecondary)
-                    .cornerRadius(18)
-                    .focused($isFocused)
-                
-                // 전송 버튼
-                Button(action: {
-                    onSend()
-                    isFocused = false
-                }) {
-                    Circle()
-                        .fill(
-                            messageText.isEmpty ?
-                            LinearGradient(
-                                gradient: Gradient(colors: [Color.gray.opacity(0.5), Color.gray.opacity(0.5)]),
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            ) :
-                            LinearGradient(
-                                gradient: Gradient(colors: [Color.primaryPurple, Color.primaryBlue]),
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
-                        .frame(width: 36, height: 36)
-                        .overlay(
-                            Image(systemName: "arrow.up")
-                                .font(.system(size: 16, weight: .semibold))
-                                .foregroundColor(.white)
-                        )
-                }
-                .disabled(messageText.isEmpty)
-            }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
-        }
-        .background(Color.darkBackground)
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(
+            roundedRect: rect, 
+            byRoundingCorners: corners, 
+            cornerRadii: CGSize(width: radius, height: radius)
+        )
+        return Path(path.cgPath)
     }
 }
 
-// 채팅 상세 헤더 뷰
-struct ChatDetailHeaderView: View {
-    let chat: ChatData
-    let onBack: () -> Void
-    let onOptions: () -> Void
-    
-    var body: some View {
-        HStack(spacing: 16) {
-            // 뒤로가기 버튼
-            Button(action: onBack) {
-                Image(systemName: "chevron.left")
-                    .font(.system(size: 20, weight: .semibold))
-                    .foregroundColor(.white)
-            }
-            
-            // 아바타 이미지
-            ZStack {
-                Circle()
-                    .fill(chat.color)
-                    .frame(width: 36, height: 36)
-                
-                Image(systemName: chat.avatarIcon)
-                    .font(.system(size: 16))
-                    .foregroundColor(.white)
-                
-                // 온라인 상태 표시
-                if chat.isOnline {
-                    Circle()
-                        .fill(Color.green)
-                        .frame(width: 10, height: 10)
-                        .overlay(
-                            Circle()
-                                .stroke(Color.darkBackground, lineWidth: 2)
-                        )
-                        .offset(x: 14, y: 14)
-                }
-            }
-            
-            // 채팅 정보
-            VStack(alignment: .leading, spacing: 2) {
-                Text(chat.name)
-                    .font(.system(size: 16, weight: .semibold))
-                    .foregroundColor(.white)
-                
-                Text(chat.isOnline ? "온라인" : "오프라인")
-                    .font(.system(size: 12))
-                    .foregroundColor(chat.isOnline ? .green : .gray)
-            }
-            
-            Spacer()
-            
-            // 음성 통화 버튼
-            Button(action: {
-                // 음성 통화 액션
-            }) {
-                Image(systemName: "phone")
-                    .font(.system(size: 18))
-                    .foregroundColor(.white)
-                    .padding(8)
-            }
-            
-            // 더보기 버튼
-            Button(action: onOptions) {
-                Image(systemName: "ellipsis")
-                    .font(.system(size: 20))
-                    .foregroundColor(.white)
-                    .rotationEffect(.degrees(90))
-                    .padding(8)
-            }
-        }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 12)
-        .background(Color.darkBackground)
+// MARK: - 프리뷰
+struct ChatView_Previews: PreviewProvider {
+    static var previews: some View {
+        ChatView()
+            .preferredColorScheme(.dark)
     }
 }
-
-// 채팅 옵션 뷰
-struct ChatOptionsView: View {
-    @Binding var isPresented: Bool
-    
-    var body: some View {
-        ZStack {
-            // 배경 블러
-            Color.black.opacity(0.4)
-                .edgesIgnoringSafeArea(.all)
-                .onTapGesture {
-                    withAnimation {
-                        isPresented = false
-                    }
-                }
-            
-            // 옵션 메뉴
-            VStack(spacing: 0) {
-                // 옵션 항목들
-                ForEach(chatOptions, id: \.title) { option in
-                    Button(action: {
-                        // 옵션 실행
-                        isPresented = false
-                    }) {
-                        HStack {
-                            Image(systemName: option.icon)
-                                .font(.system(size: 18))
-                                .foregroundColor(option.color)
-                                .frame(width: 24)
-                            
-                            Text(option.title)
-                                .font(.system(size: 16))
-                                .foregroundColor(.white)
-                            
-                            Spacer()
-                        }
-                        .padding(.vertical, 14)
-                        .padding(.horizontal, 20)
-                    }
-                    
-                    if option != chatOptions.last {
-                        Divider()
-                            .background(Color.gray.opacity(0.2))
-                            .padding(.horizontal, 20)
-                    }
-                }
-                
-                // 취소 버튼
-                Button(action: {
-                    withAnimation {
-                        isPresented = false
-                    }
-                }) {
-                    Text("취소")
-                        .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 16)
-                }
-                .padding(.top, 8)
-            }
-            .background(Color.darkBackgroundSecondary)
-            .cornerRadius(16)
-            .padding(.horizontal, 20)
-            .transition(.scale.combined(with: .opacity))
-            .scaleEffect(isPresented ? 1.0 : 0.9)
-            .opacity(isPresented ? 1.0 : 0)
-        }
-        .animation(.spring(response: 0.3), value: isPresented)
-    }
-    
-    // 채팅 옵션 목록
-    var chatOptions: [ChatOptionItem] {
-        [
-            ChatOptionItem(title: "대화 내보내기", icon: "square.and.arrow.up", color: .accentTeal),
-            ChatOptionItem(title: "대화 저장", icon: "bookmark", color: .accentYellow),
-            ChatOptionItem(title: "알림 끄기", icon: "bell.slash", color: .accentPink),
-            ChatOptionItem(title: "아바타 편집", icon: "pencil", color: .primaryBlue),
-            ChatOptionItem(title: "차단", icon: "hand.raised", color: .red)
-        ]
-    }
-    
-    // 채팅 옵션 아이템 모델
-    struct ChatOptionItem: Equatable {
-        let title: String
-        let icon: String
-        let color: Color
-    }
-}
-
-// 빈 채팅 뷰
-struct EmptyChatView: View {
-    let category: String
-    
-    var body: some View {
-        VStack(spacing: 20) {
-            // 일러스트 이미지
-            Image(systemName: "bubble.left.and.bubble.right")
-                .font(.system(size: 60))
-                .foregroundColor(.gray.opacity(0.5))
-                .padding(.top, 40)
-            
-            // 설명 텍스트
-            Text("\(category) 카테고리에 대화가 없습니다")
-                .font(.system(size: 16, weight: .medium))
-                .foregroundColor(.gray)
-                .multilineTextAlignment(.center)
-            
-            // 액션 버튼
-            Button(action: {
-                // 새 채팅 시작 액션
-            }) {
-                Text("새 대화 시작하기")
-                    .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(.white)
-                    .padding(.vertical, 12)
-                    .padding(.horizontal, 20)
-                    .background(
-                        LinearGradient(
-                            gradient: Gradient(colors: [Color.primaryPurple, Color.primaryBlue]),
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        )
-                    )
-                    .cornerRadius(16)
-            }
-            .padding(.top, 10)
-        }
-        .frame(maxWidth: .infinity)
-        .padding(20)
-    }
-}
-
-// 당겨서 새로고침 뷰
-struct RefreshingView: View {
-    @Binding var isComplete: Bool
-    
-    var body: some View {
-        HStack(spacing: 15) {
-            if isComplete {
-                // 완료 시 체크 표시
-                Image(systemName: "checkmark.circle.fill")
-                    .font(.system(size: 18))
-                    .foregroundColor(Color.accentTeal)
-                
-                Text("새로고침 완료")
-                    .font(.system(size: 14))
-                    .foregroundColor(.gray)
-            } else {
-                // 로딩 표시
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: Color.accentTeal))
-                    .scaleEffect(1.2)
-                
-                Text("새로고침 중...")
-                    .font(.system(size: 14))
-                    .foregroundColor(.gray)
-            }
-        }
-        .frame(height: 50)
-        .frame(maxWidth: .infinity)
-    }
-}
-
-// 스크롤 오프셋 프리퍼런스 키
-struct ScrollOffsetPreferenceKey: PreferenceKey {
-    static var defaultValue: CGFloat = 0
-    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-        value = nextValue()
-    }
-}
-
-// Using RoundedCorner shape defined elsewhere in the app
-
-// 아바타 데이터 모델
-struct AvatarData: Identifiable {
-    let id: Int
-    let name: String
-    let icon: String
-    let color: Color
-    let lastUsed: String
-}
-
-// 채팅 데이터 모델
-struct ChatData: Identifiable {
-    let id: Int
-    let name: String
-    let avatarIcon: String
-    let preview: String
-    let time: String
-    let color: Color
-    let unreadCount: Int
-    let isOnline: Bool
-}
-
-// 메시지 데이터 모델
-struct MessageData: Identifiable {
-    let id: String
-    let content: String
-    let isFromMe: Bool
-    let timestamp: Date
-}
-

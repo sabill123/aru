@@ -8,15 +8,15 @@ struct HomeHeaderView: View {
     var body: some View {
         HStack(alignment: .center, spacing: 16) {
             // Left side - Welcome text with enhanced typography and animation
-            VStack(alignment: .leading, spacing: 6) {
+            VStack(alignment: .leading, spacing: 4) {
                 // Username with glowing effect
-                HStack(spacing: 4) {
+                HStack(spacing: 5) {
                     Text("안녕하세요,")
-                        .font(.system(size: 22, weight: .semibold))
+                        .font(.system(size: 20, weight: .semibold))
                         .foregroundColor(Color.white.opacity(0.9))
                     
                     Text("\(username)님")
-                        .font(.system(size: 22, weight: .bold))
+                        .font(.system(size: 20, weight: .bold))
                         .foregroundColor(.white)
                         .overlay(
                             LinearGradient(
@@ -26,7 +26,7 @@ struct HomeHeaderView: View {
                             )
                             .mask(
                                 Text("\(username)님")
-                                    .font(.system(size: 22, weight: .bold))
+                                    .font(.system(size: 20, weight: .bold))
                             )
                         )
                         .scaleEffect(isAnimating ? 1.02 : 1.0)
@@ -41,25 +41,25 @@ struct HomeHeaderView: View {
                 Text("오늘의 우주 트렌드를 탐험하세요")
                     .font(.system(size: 14, weight: .medium))
                     .foregroundColor(Color.gray.opacity(0.9))
-                    .padding(.top, 2)
+                    .padding(.top, 1)
                 
                 // Mini category pill - latest trending topic
                 HStack(spacing: 4) {
                     Circle()
                         .fill(Color.accentPink)
-                        .frame(width: 8, height: 8)
+                        .frame(width: 6, height: 6)
                     
                     Text("사이버펑크 AI")
-                        .font(.system(size: 12, weight: .medium))
+                        .font(.system(size: 11, weight: .medium))
                         .foregroundColor(Color.white.opacity(0.8))
                 }
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
+                .padding(.horizontal, 6)
+                .padding(.vertical, 3)
                 .background(
                     RoundedRectangle(cornerRadius: 12)
                         .fill(Color.darkBackgroundSecondary.opacity(0.7))
                 )
-                .padding(.top, 6)
+                .padding(.top, 4)
                 .opacity(isAnimating ? 1.0 : 0.9)
                 .scaleEffect(isAnimating ? 1.0 : 0.97)
             }
@@ -77,21 +77,21 @@ struct HomeHeaderView: View {
                     ZStack(alignment: .topTrailing) {
                         Circle()
                             .fill(Color.darkBackgroundSecondary)
-                            .frame(width: 36, height: 36)
+                            .frame(width: 32, height: 32)
                             .overlay(
                                 Image(systemName: "bell.fill")
-                                    .font(.system(size: 14, weight: .medium))
+                                    .font(.system(size: 12, weight: .medium))
                                     .foregroundColor(.white)
                             )
                         
                         // Notification indicator
                         Circle()
                             .fill(Color.accentPink)
-                            .frame(width: 12, height: 12)
+                            .frame(width: 10, height: 10)
                             .overlay(
                                 Circle()
-                                    .stroke(Color.darkBackground, lineWidth: 2)
-                                    .frame(width: 10, height: 10)
+                                    .stroke(Color.darkBackground, lineWidth: 1.5)
+                                    .frame(width: 8, height: 8)
                             )
                             .offset(x: 2, y: -2)
                             .opacity(showNotification ? 1 : 0)
@@ -105,7 +105,7 @@ struct HomeHeaderView: View {
                     // Outer glow
                     Circle()
                         .fill(Color.clear)
-                        .frame(width: 48, height: 48)
+                        .frame(width: 42, height: 42)
                         .background(
                             Circle()
                                 .fill(
@@ -129,10 +129,10 @@ struct HomeHeaderView: View {
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         ))
-                        .frame(width: 42, height: 42)
+                        .frame(width: 36, height: 36)
                         .overlay(
                             Image(systemName: "person.fill")
-                                .font(.system(size: 20, weight: .medium))
+                                .font(.system(size: 17, weight: .medium))
                                 .foregroundColor(.white)
                         )
                         .shadow(color: Color.primaryPurple.opacity(0.5), radius: 8, x: 0, y: 4)

@@ -1,0 +1,48 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Main/HomeComponents/HomeHeaderView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "오늘의 우주 트렌드를 탐험하세요",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 41
+        }
+      },
+      {
+        "comment": "",
+        "key": "안녕하세요,",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 14
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@님",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 18
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@님",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 28
+        }
+      },
+      {
+        "comment": "",
+        "key": "사이버펑크 AI",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 52
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,16 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Profile/ProfileComponents/ContentItemCard.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 49
+        }
+      }
+    ]
+  },
+  "version": 1
+}

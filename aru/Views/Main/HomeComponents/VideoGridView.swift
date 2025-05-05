@@ -3,6 +3,7 @@ import SwiftUI
 struct VideoGridView: View {
     let titles: [String]
     let creators: [String]
+    var onSeeMoreTapped: (() -> Void)? = nil
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -19,19 +20,22 @@ struct VideoGridView: View {
             .padding(.horizontal)
             
             Button {
-                // 더 보기 액션
+                onSeeMoreTapped?()
             } label: {
                 Text("더 보기")
                     .font(.subheadline)
+                    .fontWeight(.medium)
                     .foregroundColor(Color.accentPink)
                     .padding(.vertical, 8)
-                    .padding(.horizontal, 16)
-                    .overlay(
+                    .padding(.horizontal, 20)
+                    .background(
                         RoundedRectangle(cornerRadius: 16)
-                            .stroke(Color.accentPink, lineWidth: 1)
+                            .stroke(Color.accentPink, lineWidth: 1.5)
                     )
             }
+            .pressEffect()
             .frame(maxWidth: .infinity, alignment: .center)
+            .padding(.top, 8)
         }
     }
 }

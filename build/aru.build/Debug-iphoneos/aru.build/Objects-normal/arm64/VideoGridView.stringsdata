@@ -1,0 +1,16 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Main/HomeComponents/VideoGridView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "더 보기",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 25
+        }
+      }
+    ]
+  },
+  "version": 1
+}

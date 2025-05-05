@@ -1,0 +1,120 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Creation/EnhancedCreationView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "CREATE ARU",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 221
+        }
+      },
+      {
+        "comment": "",
+        "key": "M",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 259
+        }
+      },
+      {
+        "comment": "",
+        "key": "AI 기능 검색",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 279
+        }
+      },
+      {
+        "comment": "",
+        "key": "추천 AI 기능",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 397
+        }
+      },
+      {
+        "comment": "",
+        "key": "모두 보기",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 432
+        }
+      },
+      {
+        "comment": "",
+        "key": "'%@' 검색 결과",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 470
+        }
+      },
+      {
+        "comment": "",
+        "key": "검색 결과가 없습니다",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 483
+        }
+      },
+      {
+        "comment": "",
+        "key": "다른 키워드로 검색해보세요",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 487
+        }
+      },
+      {
+        "comment": "",
+        "key": "이런 것을 만들 수 있어요",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 698
+        }
+      },
+      {
+        "comment": "",
+        "key": "예시 %lld",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 725
+        }
+      },
+      {
+        "comment": "",
+        "key": "사용 팁",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 738
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 752
+        }
+      },
+      {
+        "comment": "",
+        "key": "시작하기",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 803
+        }
+      },
+      {
+        "comment": "",
+        "key": "튜토리얼 보기",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 829
+        }
+      }
+    ]
+  },
+  "version": 1
+}

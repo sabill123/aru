@@ -9,7 +9,7 @@ struct ProfileSettingsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("설정")
-                .font(.system(size: 20, weight: .bold))
+                .font(.system(size: 18, weight: .bold))
                 .foregroundColor(.white)
                 .padding(.top, 20)
                 .padding(.horizontal, 20)
@@ -66,7 +66,7 @@ struct ProfileSettingsView: View {
                         // 로그아웃 액션
                     }) {
                         Text("로그아웃")
-                            .font(.system(size: 16, weight: .semibold))
+                            .font(.system(size: 15, weight: .semibold))
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 15)
@@ -102,7 +102,7 @@ struct ProfileSettingsSectionView<Content: View>: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(title)
-                .font(.system(size: 16, weight: .semibold))
+                .font(.system(size: 15, weight: .semibold))
                 .foregroundColor(.gray)
                 .padding(.horizontal, 10)
             
@@ -153,12 +153,12 @@ struct ProfileSettingsRow: View {
         }) {
             HStack {
                 Image(systemName: icon)
-                    .font(.system(size: 18))
+                    .font(.system(size: 16))
                     .foregroundColor(.white)
-                    .frame(width: 30)
+                    .frame(width: 28)
                 
                 Text(title)
-                    .font(.system(size: 16))
+                    .font(.system(size: 15))
                     .foregroundColor(.white)
                 
                 Spacer()
@@ -168,15 +168,15 @@ struct ProfileSettingsRow: View {
                         .labelsHidden()
                 } else if hasValue {
                     Text(value)
-                        .font(.system(size: 14))
+                        .font(.system(size: 13))
                         .foregroundColor(.gray)
                     
                     Image(systemName: "chevron.right")
-                        .font(.system(size: 14))
+                        .font(.system(size: 12))
                         .foregroundColor(.gray)
                 } else {
                     Image(systemName: "chevron.right")
-                        .font(.system(size: 14))
+                        .font(.system(size: 12))
                         .foregroundColor(.gray)
                 }
             }

@@ -1,0 +1,30 @@
+"/Users/jaeseokhan/Desktop/aru/aru/aru/PressGestureViewModifier.swift":
+  object: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/PressGestureViewModifier.o"
+  diagnostics: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/PressGestureViewModifier.dia"
+  dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/PressGestureViewModifier.d"
+  swift-dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/PressGestureViewModifier.swiftdeps"
+  const-values: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/PressGestureViewModifier.swiftconstvalues"
+"/Users/jaeseokhan/Desktop/aru/aru/aru/Utils/ViewExtensions.swift":
+  swift-dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ViewExtensions.swiftdeps"
+  diagnostics: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ViewExtensions.dia"
+  const-values: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ViewExtensions.swiftconstvalues"
+  object: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ViewExtensions.o"
+  dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ViewExtensions.d"
+"/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Creation/CreationComponents/CreationCategoryScroll.swift":
+  diagnostics: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/CreationCategoryScroll.dia"
+  const-values: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/CreationCategoryScroll.swiftconstvalues"
+  dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/CreationCategoryScroll.d"
+  object: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/CreationCategoryScroll.o"
+  swift-dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/CreationCategoryScroll.swiftdeps"
+"/Users/jaeseokhan/Desktop/aru/aru/aru/Utils/RoundedCorner.swift":
+  const-values: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/RoundedCorner.swiftconstvalues"
+  dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/RoundedCorner.d"
+  object: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/RoundedCorner.o"
+  diagnostics: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/RoundedCorner.dia"
+  swift-dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/RoundedCorner.swiftdeps"
+"/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Creation/EnhancedCreationView.swift":
+  dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/EnhancedCreationView.d"
+  swift-dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/EnhancedCreationView.swiftdeps"
+  const-values: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/EnhancedCreationView.swiftconstvalues"
+  diagnostics: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/EnhancedCreationView.dia"
+  object: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/EnhancedCreationView.o"

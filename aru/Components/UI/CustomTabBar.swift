@@ -4,94 +4,60 @@ struct CustomTabBar: View {
     @Binding var selectedTab: Int
     
     var body: some View {
-        HStack(spacing: 0) {
-            ForEach(0..<5) { index in
-                if index == 2 {
-                    // 중앙 메인 버튼
+        VStack(spacing: 0) {
+            // 상단 구분선
+            Rectangle()
+                .fill(Color.gray.opacity(0.3))
+                .frame(height: 0.5)
+            
+            // 탭바 컨텐츠
+            HStack(spacing: 0) {
+                ForEach(0..<5) { index in
                     Button {
                         selectedTab = index
                     } label: {
-                        ZStack {
-                            // Outer glow
-                            Circle()
-                                .fill(Color.clear)
-                                .frame(width: 70, height: 70) // 크기 키움
-                                .background(
-                                    Circle()
-                                        .fill(Color.clear)
-                                        .shadow(color: Color(hex: "6A11CB").opacity(0.3), radius: 12)
-                                )
-                            
-                            // Main circle
-                            Circle()
-                                .fill(LinearGradient(
-                                    gradient: Gradient(colors: [Color(hex: "6A11CB"), Color(hex: "2575FC")]),
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
-                                ))
-                                .frame(width: 58, height: 58) // 크기 키움
-                                
-                            // Plus icon
-                            Image(systemName: "plus")
-                                .font(.system(size: 26, weight: .bold)) // 아이콘 크기 키움
-                                .foregroundColor(.white)
-                                .background(Color.clear) // Ensures no grid lines appear
-                        }
-                    }
-                } else {
-                    // 일반 탭 버튼
-                    Button {
-                        selectedTab = index
-                    } label: {
-                        VStack(spacing: 6) { // 간격 다시 늘림
-                            Image(systemName: tabIcon(index))
-                                .font(.system(size: 20))
-                                .foregroundColor(selectedTab == index ? .white : .gray)
+                        VStack(spacing: 6) {
+                            Image(systemName: tabIcon(index, isSelected: selectedTab == index))
+                                .font(.system(size: 22))
+                                .foregroundColor(selectedTab == index ? .primaryPurple : .gray.opacity(0.7))
                             
                             Text(tabTitle(index))
-                                .font(.system(size: 10))
-                                .foregroundColor(selectedTab == index ? .white : .gray)
+                                .font(.system(size: 12, weight: selectedTab == index ? .medium : .regular))
+                                .foregroundColor(selectedTab == index ? .primaryPurple : .gray.opacity(0.7))
                         }
                         .frame(maxWidth: .infinity)
+                        .padding(.vertical, 10)
+                        .background(
+                            selectedTab == index ?
+                            Color.primaryPurple.opacity(0.1) :
+                            Color.clear
+                        )
                     }
                 }
             }
         }
-        .padding(.horizontal, 16)
-        .padding(.top, 10)
-        .padding(.bottom, 20) // 하단 여백 포함
-        .frame(height: 80) // 하단 여백을 포함한 높이
-        .background(
-            Color(hex: "0A0A14")
-                .opacity(0.95)
-        )
-        .clipShape(
-            Rectangle() // 직사각형 모양으로 클리핑
-        )
-        .overlay(
-            Rectangle()
-                .frame(height: 1)
-                .foregroundColor(Color(hex: "1a1a2e")),
-            alignment: .top
-        )
+        .background(Color.darkBackground)
+        .edgesIgnoringSafeArea(.bottom)
     }
     
-    private func tabIcon(_ index: Int) -> String {
+    private func tabIcon(_ index: Int, isSelected: Bool) -> String {
         switch index {
-        case 0: return "house"
-        case 1: return "film"
-        case 3: return "message"
-        case 4: return "person"
+        case 0: return isSelected ? "tshirt.fill" : "tshirt"  // 패션 탭
+        case 1: return isSelected ? "film.fill" : "film"      // 창작 탭
+        case 2: return isSelected ? "house.fill" : "house"    // 홈 탭
+        case 3: return isSelected ? "message.fill" : "message" // 채팅 탭
+        case 4: return isSelected ? "person.fill" : "person"  // 프로필 탭
         default: return ""
         }
     }
     
     private func tabTitle(_ index: Int) -> String {
         switch index {
-        case 0: return "홈"
-        case 1: return "창작"
-        case 3: return "채팅"
-        case 4: return "프로필"
+        case 0: return "패션"    // 패션 탭
+        case 1: return "창작"    // 창작 탭
+        case 2: return "홈"      // 홈 탭
+        case 3: return "채팅"    // 채팅 탭
+        case 4: return "프로필"  // 프로필 탭
         default: return ""
         }
     }

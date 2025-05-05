@@ -16,85 +16,44 @@ struct SectionHeaderView: View {
                 ZStack {
                     Circle()
                         .fill(iconColor.opacity(0.15))
-                        .frame(width: 32, height: 32)
+                        .frame(width: 28, height: 28)
                     
                     Image(systemName: icon)
-                        .font(.system(size: 14, weight: .semibold))
+                        .font(.system(size: 12, weight: .semibold))
                         .foregroundColor(iconColor)
                 }
                 
                 // Title with optional gradient
                 Text(title)
-                    .font(.system(size: 17, weight: .bold))
+                    .font(.system(size: 15, weight: .bold))
                     .foregroundColor(.white)
             }
             
             Spacer()
             
-            // Enhanced "more" button
+            // 더보기 버튼 - 오른쪽에 위치
             if let action = showMoreAction {
                 Button(action: action) {
-                    HStack(spacing: 6) {
-                        Text("더보기")
-                            .font(.system(size: 14, weight: .medium))
-                            .foregroundColor(isHovered ? .white.opacity(0.9) : .gray)
-                        
-                        Image(systemName: "chevron.right")
-                            .font(.system(size: 11, weight: .medium))
-                            .foregroundColor(isHovered ? .white.opacity(0.9) : .gray)
-                            .offset(x: isHovered ? 2 : 0)
-                            .animation(.spring(response: 0.3, dampingFraction: 0.7), value: isHovered)
-                    }
-                    .padding(.vertical, 6)
-                    .padding(.horizontal, 12)
-                    .background(
-                        ZStack {
-                            // Base background
-                            RoundedRectangle(cornerRadius: 16)
-                                .fill(
-                                    isHovered ? 
-                                    LinearGradient(
-                                        gradient: Gradient(colors: [
-                                            iconColor.opacity(0.3), 
-                                            iconColor.opacity(0.15)
-                                        ]),
-                                        startPoint: .topLeading,
-                                        endPoint: .bottomTrailing
-                                    ) :
-                                    LinearGradient(
-                                        gradient: Gradient(colors: [
-                                            Color.darkBackgroundSecondary.opacity(0.5),
-                                            Color.darkBackgroundSecondary.opacity(0.5)
-                                        ]),
-                                        startPoint: .topLeading,
-                                        endPoint: .bottomTrailing
-                                    )
-                                )
-                            
-                            // Subtle border when hovered
-                            if isHovered {
-                                RoundedRectangle(cornerRadius: 16)
-                                    .stroke(
-                                        LinearGradient(
-                                            gradient: Gradient(colors: [
-                                                iconColor.opacity(0.5),
-                                                iconColor.opacity(0.2)
-                                            ]),
-                                            startPoint: .topLeading,
-                                            endPoint: .bottomTrailing
-                                        ),
-                                        lineWidth: 1
-                                    )
-                            }
-                        }
-                    )
+                    Text("더보기")
+                        .font(.system(size: 13))
+                        .foregroundColor(.gray)
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 10)
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color.darkBackgroundSecondary.opacity(isHovered ? 0.8 : 0.5))
+                        )
+                        .scaleEffect(isPressed ? 0.95 : 1.0)
                 }
-                .pressEffect(intensity: 0.95)
-                .handleHover { hovering in
-                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                        isHovered = hovering
-                    }
+                .buttonStyle(PlainButtonStyle())
+                .onHover { hovering in
+                    isHovered = hovering
                 }
+                .simultaneousGesture(
+                    DragGesture(minimumDistance: 0)
+                        .onChanged { _ in isPressed = true }
+                        .onEnded { _ in isPressed = false }
+                )
             }
         }
         .padding(.horizontal)

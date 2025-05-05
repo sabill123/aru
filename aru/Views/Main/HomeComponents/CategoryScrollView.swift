@@ -22,6 +22,9 @@ struct CategoryScrollView: View {
                                 selectedCategoryIndex = index
                                 // Trigger indicator animation
                                 animateIndicator = false
+                                // post notification for category change
+                                NotificationCenter.default.post(name: NSNotification.Name("categoryChanged"), object: nil, userInfo: ["index": index])
+                                
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                                     withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                                         animateIndicator = true
@@ -44,8 +47,8 @@ struct CategoryScrollView: View {
                                                 endPoint: .trailing
                                             )
                                         )
-                                        .frame(width: 20, height: 3)
-                                        .offset(y: 20)
+                                        .frame(width: 16, height: 3)
+                                        .offset(y: 15)
                                         .matchedGeometryEffect(id: "categoryIndicator", in: animation)
                                         .opacity(animateIndicator ? 1 : 0)
                                 }

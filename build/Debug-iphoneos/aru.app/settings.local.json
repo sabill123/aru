@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(ls:*)",
+      "Bash(/Users/jaeseokhan/Desktop/aru/aru/aru/*.swift)",
+      "Bash(/Users/jaeseokhan/Desktop/aru/aru/aru/Views/*/*.swift)",
+      "Bash(rm:*)",
+      "Bash(mv:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(cp /Users/jaeseokhan/Desktop/aru/aru/aru/SpaceBackgroundView.swift /Users/jaeseokhan/Desktop/aru/aru/aru/Components/UI/)",
+      "Bash(cat:*)",
+      "Bash(cp:*)",
+      "Bash(git stash:*)",
+      "Bash(xcodebuild:*)",
+      "Bash(git restore:*)",
+      "Bash(git checkout:*)",
+      "Bash(*.swift)",
+      "Bash(~/Library/Developer/Xcode/DerivedData/aru-*)",
+      "Bash(git reset:*)",
+      "Bash(~/Library/Developer/Xcode/DerivedData/*)",
+      "Bash(/Users/jaeseokhan/Desktop/aru/aru/aru/Utils/ViewExtensions.*)",
+      "Bash(git remote add:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Bash(touch:*)"
+    ],
+    "deny": []
+  }
+}

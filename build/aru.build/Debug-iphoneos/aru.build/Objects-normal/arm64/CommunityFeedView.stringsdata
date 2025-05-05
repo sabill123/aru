@@ -1,0 +1,256 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Features/CommunityFeedView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "초기화",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 147
+        }
+      },
+      {
+        "comment": "",
+        "key": "필터",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 206
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ 커뮤니티",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 336
+        }
+      },
+      {
+        "comment": "",
+        "key": "게시물 검색",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 370
+        }
+      },
+      {
+        "comment": "",
+        "key": "카테고리 필터",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 405
+        }
+      },
+      {
+        "comment": "",
+        "key": "적용하기",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 456
+        }
+      },
+      {
+        "comment": "",
+        "key": "콘텐츠를 불러오는 중...",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 517
+        }
+      },
+      {
+        "comment": "",
+        "key": "좋아요 %lld개",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 781
+        }
+      },
+      {
+        "comment": "",
+        "key": "#%@",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 806
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld개의 댓글 모두 보기",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 818
+        }
+      },
+      {
+        "comment": "",
+        "key": "팔로우",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 934
+        }
+      },
+      {
+        "comment": "",
+        "key": "#%@",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 966
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 989
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 1000
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 1011
+        }
+      },
+      {
+        "comment": "",
+        "key": "댓글",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 1024
+        }
+      },
+      {
+        "comment": "",
+        "key": "비슷한 콘텐츠",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 1044
+        }
+      },
+      {
+        "comment": "",
+        "key": "댓글 작성...",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 1076
+        }
+      },
+      {
+        "comment": "",
+        "key": "•",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 1151
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 1175
+        }
+      },
+      {
+        "comment": "",
+        "key": "답글",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 1185
+        }
+      },
+      {
+        "comment": "",
+        "key": "'%@' 검색 결과",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 1260
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 1354
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 1370
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 1515
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 1531
+        }
+      },
+      {
+        "comment": "",
+        "key": "공유",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 1546
+        }
+      },
+      {
+        "comment": "",
+        "key": "더보기",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 1561
+        }
+      },
+      {
+        "comment": "",
+        "key": "•",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 1629
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 1632
+        }
+      },
+      {
+        "comment": "",
+        "key": "#%@",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 1650
+        }
+      }
+    ]
+  },
+  "version": 1
+}

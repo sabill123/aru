@@ -1,0 +1,184 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Features/WebNovelCommunityView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "웹소설 커뮤니티",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 132
+        }
+      },
+      {
+        "comment": "",
+        "key": "웹소설을 불러오는 중...",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 160
+        }
+      },
+      {
+        "comment": "",
+        "key": "이 달의 추천",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 184
+        }
+      },
+      {
+        "comment": "",
+        "key": "별들의 전쟁: 우주 전설",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 195
+        }
+      },
+      {
+        "comment": "",
+        "key": "은하계의 운명이 소년의 손에 달렸다",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 200
+        }
+      },
+      {
+        "comment": "",
+        "key": "별빛작가",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 223
+        }
+      },
+      {
+        "comment": "",
+        "key": "SF 판타지",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 233
+        }
+      },
+      {
+        "comment": "",
+        "key": "4.9",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 212
+        }
+      },
+      {
+        "comment": "",
+        "key": "읽기",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 250
+        }
+      },
+      {
+        "comment": "",
+        "key": "읽기",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 588
+        }
+      },
+      {
+        "comment": "",
+        "key": "저장",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 608
+        }
+      },
+      {
+        "comment": "",
+        "key": "소개",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 629
+        }
+      },
+      {
+        "comment": "",
+        "key": "접기",
+        "location": {
+          "startingColumn": 56,
+          "startingLine": 643
+        }
+      },
+      {
+        "comment": "",
+        "key": "더 보기",
+        "location": {
+          "startingColumn": 67,
+          "startingLine": 643
+        }
+      },
+      {
+        "comment": "",
+        "key": "비슷한 작품",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 656
+        }
+      },
+      {
+        "comment": "",
+        "key": "댓글 및 평가",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 677
+        }
+      },
+      {
+        "comment": "",
+        "key": "823개의 평가",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 698
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 707
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld%%",
+        "location": {
+          "startingColumn": 46,
+          "startingLine": 723
+        }
+      },
+      {
+        "comment": "",
+        "key": "댓글 모두 보기",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 755
+        }
+      },
+      {
+        "comment": "",
+        "key": "좋아요",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 930
+        }
+      },
+      {
+        "comment": "",
+        "key": "답글 달기",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 939
+        }
+      }
+    ]
+  },
+  "version": 1
+}

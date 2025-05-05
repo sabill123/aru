@@ -1,0 +1,32 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Profile/ProfileComponents/ProfileSettingsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "설정",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 11
+        }
+      },
+      {
+        "comment": "",
+        "key": "로그아웃",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 68
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 167
+        }
+      }
+    ]
+  },
+  "version": 1
+}

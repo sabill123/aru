@@ -1,0 +1,24 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Creation/UserCreationsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "나의 AI 창작",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 118
+        }
+      },
+      {
+        "comment": "",
+        "key": "AI 창작물 검색",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 156
+        }
+      }
+    ]
+  },
+  "version": 1
+}

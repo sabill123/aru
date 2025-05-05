@@ -1,0 +1,48 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Splash/EnhancedSplashScreen.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "A",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 131
+        }
+      },
+      {
+        "comment": "",
+        "key": "U",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 138
+        }
+      },
+      {
+        "comment": "",
+        "key": "ARU",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 146
+        }
+      },
+      {
+        "comment": "",
+        "key": "AI 창작의 모든 우주",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 193
+        }
+      },
+      {
+        "comment": "",
+        "key": "당신의 손끝에서 시작됩니다",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 204
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,264 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Main/MainTabView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "FASHION ARU",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 199
+        }
+      },
+      {
+        "comment": "",
+        "key": "나만의 스타일로\n가상 피팅을 시작하세요",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 281
+        }
+      },
+      {
+        "comment": "",
+        "key": "지금 체험하기",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 290
+        }
+      },
+      {
+        "comment": "",
+        "key": "가상 피팅",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 311
+        }
+      },
+      {
+        "comment": "",
+        "key": "내 사진으로 피팅",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 394
+        }
+      },
+      {
+        "comment": "",
+        "key": "피팅 시작",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 416
+        }
+      },
+      {
+        "comment": "",
+        "key": "촬영하기",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 459
+        }
+      },
+      {
+        "comment": "",
+        "key": "갤러리",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 480
+        }
+      },
+      {
+        "comment": "",
+        "key": "인기 피팅 결과",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 517
+        }
+      },
+      {
+        "comment": "",
+        "key": "더보기",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 526
+        }
+      },
+      {
+        "comment": "",
+        "key": "추천 상품",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 556
+        }
+      },
+      {
+        "comment": "",
+        "key": "더보기",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 565
+        }
+      },
+      {
+        "comment": "",
+        "key": "트렌딩 아이템",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 596
+        }
+      },
+      {
+        "comment": "",
+        "key": "더보기",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 605
+        }
+      },
+      {
+        "comment": "",
+        "key": "스타일 룩북",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 636
+        }
+      },
+      {
+        "comment": "",
+        "key": "더보기",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 645
+        }
+      },
+      {
+        "comment": "",
+        "key": "돌아가기",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 685
+        }
+      },
+      {
+        "comment": "",
+        "key": "가상 피팅 결과",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 707
+        }
+      },
+      {
+        "comment": "",
+        "key": "가상 피팅 중...",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 744
+        }
+      },
+      {
+        "comment": "",
+        "key": "이런 아이템은 어떠세요?",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 758
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ 아이템",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 801
+        }
+      },
+      {
+        "comment": "",
+        "key": "39,000원",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 805
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 920
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld%%",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 961
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld원",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 1000
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 1006
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld%%",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 1047
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld원",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 1072
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 1078
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld원",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 1267
+        }
+      },
+      {
+        "comment": "",
+        "key": "코디 #%lld",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 1314
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 1327
+        }
+      }
+    ]
+  },
+  "version": 1
+}

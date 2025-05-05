@@ -70,27 +70,59 @@ struct HeaderView: View {
     
     var body: some View {
         HStack {
+            // 트렌디한 뒤로가기 버튼
             Button(action: dismissAction) {
-                Image(systemName: "chevron.left")
-                    .font(.system(size: 20, weight: .semibold))
+                ZStack {
+                    Circle()
+                        .fill(Color.darkBackgroundSecondary.opacity(0.8))
+                        .frame(width: 38, height: 38)
+                        .shadow(color: Color.black.opacity(0.2), radius: 4, x: 0, y: 2)
+                    
+                    Image(systemName: "chevron.left")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(.white)
+                }
+            }
+            .pressEffect(intensity: 0.95)
+            
+            Spacer()
+            
+            // 중앙 타이틀과 아이콘 - 현대적 스타일
+            HStack(spacing: 8) {
+                Image(systemName: "photo.fill")
+                    .font(.system(size: 20))
+                    .foregroundColor(Color(hex: "FF5A92"))
+                
+                Text("이미지 생성")
+                    .font(.system(size: 22, weight: .bold))
                     .foregroundColor(.white)
             }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 10)
+            .background(
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(Color.darkBackgroundSecondary.opacity(0.3))
+                    .shadow(color: Color(hex: "FF5A92").opacity(0.2), radius: 8, x: 0, y: 4)
+            )
             
             Spacer()
             
-            Text("이미지 생성")
-                .font(.system(size: 22, weight: .bold))
-                .foregroundColor(.white)
-            
-            Spacer()
-            
+            // 도움말 버튼
             Button(action: {
                 // 도움말
             }) {
-                Image(systemName: "questionmark.circle")
-                    .font(.system(size: 20))
-                    .foregroundColor(.white)
+                ZStack {
+                    Circle()
+                        .fill(Color.darkBackgroundSecondary.opacity(0.8))
+                        .frame(width: 38, height: 38)
+                        .shadow(color: Color.black.opacity(0.2), radius: 4, x: 0, y: 2)
+                    
+                    Image(systemName: "sparkles")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(Color(hex: "FF5A92"))
+                }
             }
+            .pressEffect(intensity: 0.95)
         }
         .padding(.horizontal, 20)
         .padding(.top, 16)
@@ -209,29 +241,73 @@ struct StyleButton: View {
     let style: String
     let isSelected: Bool
     let action: () -> Void
+    @State private var isHovered = false
     
     var body: some View {
         Button(action: action) {
-            Text(style)
-                .font(.system(size: 14))
-                .padding(.horizontal, 16)
-                .padding(.vertical, 10)
-                .background(
-                    isSelected ?
-                    LinearGradient(
-                        gradient: Gradient(colors: [Color(hex: "FF36A3"), Color(hex: "FF61D2")]),
-                        startPoint: .leading,
-                        endPoint: .trailing
-                    ) :
-                    LinearGradient(
-                        gradient: Gradient(colors: [Color(hex: "1A1A32"), Color(hex: "1A1A32")]),
-                        startPoint: .leading,
-                        endPoint: .trailing
-                    )
-                )
-                .cornerRadius(20)
-                .foregroundColor(.white)
+            // 트렌디한 스타일 버튼
+            HStack(spacing: 8) {
+                if isSelected {
+                    // 선택되었을 때만 아이콘 표시
+                    Image(systemName: "checkmark")
+                        .font(.system(size: 12, weight: .bold))
+                        .foregroundColor(.white)
+                }
+                
+                Text(style)
+                    .font(.system(size: 15, weight: isSelected ? .semibold : .medium))
+                    .foregroundColor(.white)
+            }
+            .padding(.horizontal, isSelected ? 16 : 14)
+            .padding(.vertical, 10)
+            .background(
+                ZStack {
+                    if isSelected {
+                        // 선택된 상태 - 화려한 그라데이션
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(
+                                LinearGradient(
+                                    gradient: Gradient(colors: [Color(hex: "FF36A3"), Color(hex: "FF61D2")]),
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
+                            .shadow(color: Color(hex: "FF36A3").opacity(0.5), radius: 8, x: 0, y: 3)
+                            
+                        // 글로우 효과
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.white.opacity(0.3), lineWidth: 1)
+                    } else {
+                        // 비선택 상태 - 유리 효과
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(Color(hex: "1A1A32").opacity(isHovered ? 0.8 : 0.6))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(
+                                        LinearGradient(
+                                            gradient: Gradient(colors: [
+                                                Color.white.opacity(0.2),
+                                                Color.white.opacity(0.05)
+                                            ]),
+                                            startPoint: .topLeading,
+                                            endPoint: .bottomTrailing
+                                        ),
+                                        lineWidth: 1
+                                    )
+                            )
+                    }
+                }
+            )
+            .scaleEffect(isHovered ? 1.05 : 1.0)
+            .animation(.spring(response: 0.2, dampingFraction: 0.6), value: isHovered)
         }
+        .buttonStyle(PlainButtonStyle())
+        .onHover { hovering in
+            withAnimation(.easeInOut(duration: 0.2)) {
+                isHovered = hovering
+            }
+        }
+        .pressEffect(intensity: 0.95)
     }
 }
 

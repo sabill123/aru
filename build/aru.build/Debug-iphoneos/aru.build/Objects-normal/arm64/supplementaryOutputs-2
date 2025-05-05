@@ -1,0 +1,30 @@
+"/Users/jaeseokhan/Desktop/aru/aru/aru/Models/ARUDataModels.swift":
+  swift-dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ARUDataModels.swiftdeps"
+  diagnostics: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ARUDataModels.dia"
+  dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ARUDataModels.d"
+  object: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ARUDataModels.o"
+  const-values: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ARUDataModels.swiftconstvalues"
+"/Users/jaeseokhan/Desktop/aru/aru/aru/Models/ChatData.swift":
+  dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ChatData.d"
+  swift-dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ChatData.swiftdeps"
+  diagnostics: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ChatData.dia"
+  object: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ChatData.o"
+  const-values: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ChatData.swiftconstvalues"
+"/Users/jaeseokhan/Desktop/aru/aru/aru/Models/ChatMessageData.swift":
+  diagnostics: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ChatMessageData.dia"
+  swift-dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ChatMessageData.swiftdeps"
+  object: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ChatMessageData.o"
+  const-values: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ChatMessageData.swiftconstvalues"
+  dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ChatMessageData.d"
+"/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Main/HomeComponents/InspirationCard.swift":
+  const-values: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/InspirationCard.swiftconstvalues"
+  object: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/InspirationCard.o"
+  diagnostics: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/InspirationCard.dia"
+  dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/InspirationCard.d"
+  swift-dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/InspirationCard.swiftdeps"
+"/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Chat/ChatView.swift":
+  swift-dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ChatView.swiftdeps"
+  diagnostics: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ChatView.dia"
+  object: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ChatView.o"
+  const-values: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ChatView.swiftconstvalues"
+  dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ChatView.d"

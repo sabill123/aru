@@ -37,20 +37,20 @@ struct HomeCategoryButton: View {
                 if isActive {
                     Circle()
                         .fill(Color.white.opacity(0.15))
-                        .frame(width: 26, height: 26)
+                        .frame(width: 22, height: 22)
                 }
                 
                 Image(systemName: icon)
-                    .font(.system(size: 14, weight: isActive ? .semibold : .medium))
+                    .font(.system(size: 11, weight: isActive ? .semibold : .medium))
             }
             
             // Text with weight change when active
             Text(title)
-                .font(.system(size: 14, weight: isActive ? .semibold : .medium))
+                .font(.system(size: 13, weight: isActive ? .semibold : .medium))
         }
         .foregroundColor(isActive ? .white : .gray)
-        .padding(.vertical, 10)
-        .padding(.horizontal, 16)
+        .padding(.vertical, 6)
+        .padding(.horizontal, 12)
         .background(
             ZStack {
                 // Base background

@@ -1,0 +1,30 @@
+"/Users/jaeseokhan/Desktop/aru/aru/aru/aruApp.swift":
+  dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/aruApp.d"
+  swift-dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/aruApp.swiftdeps"
+  diagnostics: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/aruApp.dia"
+  const-values: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/aruApp.swiftconstvalues"
+  object: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/aruApp.o"
+"/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Profile/ProfileComponents/ContentListView.swift":
+  dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ContentListView.d"
+  swift-dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ContentListView.swiftdeps"
+  diagnostics: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ContentListView.dia"
+  object: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ContentListView.o"
+  const-values: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ContentListView.swiftconstvalues"
+"/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Splash/SplashScreen.swift":
+  const-values: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/SplashScreen.swiftconstvalues"
+  diagnostics: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/SplashScreen.dia"
+  swift-dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/SplashScreen.swiftdeps"
+  object: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/SplashScreen.o"
+  dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/SplashScreen.d"
+"/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Chat/ChatComponents/ChatHeaderView.swift":
+  dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ChatHeaderView.d"
+  object: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ChatHeaderView.o"
+  diagnostics: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ChatHeaderView.dia"
+  swift-dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ChatHeaderView.swiftdeps"
+  const-values: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ChatHeaderView.swiftconstvalues"
+"/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/DerivedSources/GeneratedAssetSymbols.swift":
+  diagnostics: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/GeneratedAssetSymbols.dia"
+  object: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/GeneratedAssetSymbols.o"
+  dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/GeneratedAssetSymbols.d"
+  const-values: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues"
+  swift-dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps"

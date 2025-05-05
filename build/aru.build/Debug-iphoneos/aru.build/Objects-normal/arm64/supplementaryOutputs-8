@@ -1,0 +1,30 @@
+"/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Features/NovelCreationView.swift":
+  diagnostics: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/NovelCreationView.dia"
+  dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/NovelCreationView.d"
+  swift-dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/NovelCreationView.swiftdeps"
+  object: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/NovelCreationView.o"
+  const-values: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/NovelCreationView.swiftconstvalues"
+"/Users/jaeseokhan/Desktop/aru/aru/aru/Models/SampleMessages.swift":
+  object: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/SampleMessages.o"
+  dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/SampleMessages.d"
+  const-values: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/SampleMessages.swiftconstvalues"
+  swift-dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/SampleMessages.swiftdeps"
+  diagnostics: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/SampleMessages.dia"
+"/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Features/WebNovelCommunityView.swift":
+  dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/WebNovelCommunityView.d"
+  const-values: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/WebNovelCommunityView.swiftconstvalues"
+  object: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/WebNovelCommunityView.o"
+  swift-dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/WebNovelCommunityView.swiftdeps"
+  diagnostics: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/WebNovelCommunityView.dia"
+"/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Profile/ProfileComponents/ContentItemCard.swift":
+  dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ContentItemCard.d"
+  object: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ContentItemCard.o"
+  swift-dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ContentItemCard.swiftdeps"
+  const-values: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ContentItemCard.swiftconstvalues"
+  diagnostics: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ContentItemCard.dia"
+"/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Creation/UserCreationsView.swift":
+  swift-dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/UserCreationsView.swiftdeps"
+  const-values: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/UserCreationsView.swiftconstvalues"
+  dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/UserCreationsView.d"
+  diagnostics: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/UserCreationsView.dia"
+  object: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/UserCreationsView.o"

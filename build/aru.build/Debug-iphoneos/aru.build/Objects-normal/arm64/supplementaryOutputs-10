@@ -1,0 +1,30 @@
+"/Users/jaeseokhan/Desktop/aru/aru/aru/ContentView.swift":
+  swift-dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ContentView.swiftdeps"
+  diagnostics: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ContentView.dia"
+  const-values: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ContentView.swiftconstvalues"
+  dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ContentView.d"
+  object: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ContentView.o"
+"/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Main/MainTabView.swift":
+  swift-dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/MainTabView.swiftdeps"
+  diagnostics: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/MainTabView.dia"
+  object: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/MainTabView.o"
+  dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/MainTabView.d"
+  const-values: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/MainTabView.swiftconstvalues"
+"/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Profile/ProfileView.swift":
+  dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ProfileView.d"
+  diagnostics: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ProfileView.dia"
+  swift-dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ProfileView.swiftdeps"
+  const-values: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ProfileView.swiftconstvalues"
+  object: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/ProfileView.o"
+"/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Profile/ProfileComponents/TabBarButton.swift":
+  diagnostics: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/TabBarButton.dia"
+  dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/TabBarButton.d"
+  object: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/TabBarButton.o"
+  const-values: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/TabBarButton.swiftconstvalues"
+  swift-dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/TabBarButton.swiftdeps"
+"/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Splash/EnhancedSplashScreen.swift":
+  const-values: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/EnhancedSplashScreen.swiftconstvalues"
+  dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/EnhancedSplashScreen.d"
+  swift-dependencies: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/EnhancedSplashScreen.swiftdeps"
+  diagnostics: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/EnhancedSplashScreen.dia"
+  object: "/Users/jaeseokhan/Desktop/aru/aru/build/aru.build/Debug-iphoneos/aru.build/Objects-normal/arm64/EnhancedSplashScreen.o"

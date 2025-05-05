@@ -1,0 +1,16 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Components/UI/CustomTabBar.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "홈",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 40
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -45,7 +45,7 @@ struct VirtualFittingView: View {
                     
                     if showResult {
                         // 피팅 결과 화면
-                        ResultView(
+                        VirtualFittingResultView(
                             selectedCategory: selectedCategory,
                             backAction: { showResult = false }
                         )
@@ -69,7 +69,7 @@ struct VirtualFittingView: View {
             
             // 로딩 인디케이터
             if isProcessing {
-                LoadingView()
+                VirtualFittingLoadingView()
             }
         }
         .navigationBarHidden(true)
@@ -95,27 +95,59 @@ struct FittingHeaderView: View {
     
     var body: some View {
         HStack {
+            // 트렌디한 뒤로가기 버튼
             Button(action: dismissAction) {
-                Image(systemName: "chevron.left")
-                    .font(.system(size: 20, weight: .semibold))
+                ZStack {
+                    Circle()
+                        .fill(Color.darkBackgroundSecondary.opacity(0.8))
+                        .frame(width: 38, height: 38)
+                        .shadow(color: Color.black.opacity(0.2), radius: 4, x: 0, y: 2)
+                    
+                    Image(systemName: "chevron.left")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(.white)
+                }
+            }
+            .pressEffect(intensity: 0.95)
+            
+            Spacer()
+            
+            // 중앙 타이틀과 아이콘 - 현대적 스타일
+            HStack(spacing: 8) {
+                Image(systemName: "tshirt.fill")
+                    .font(.system(size: 20))
+                    .foregroundColor(Color(hex: "FFD60A"))
+                
+                Text(title)
+                    .font(.system(size: 22, weight: .bold))
                     .foregroundColor(.white)
             }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 10)
+            .background(
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(Color.darkBackgroundSecondary.opacity(0.3))
+                    .shadow(color: Color(hex: "FFD60A").opacity(0.2), radius: 8, x: 0, y: 4)
+            )
             
             Spacer()
             
-            Text(title)
-                .font(.system(size: 22, weight: .bold))
-                .foregroundColor(.white)
-            
-            Spacer()
-            
+            // 도움말 버튼
             Button(action: {
                 // 도움말
             }) {
-                Image(systemName: "questionmark.circle")
-                    .font(.system(size: 20))
-                    .foregroundColor(.white)
+                ZStack {
+                    Circle()
+                        .fill(Color.darkBackgroundSecondary.opacity(0.8))
+                        .frame(width: 38, height: 38)
+                        .shadow(color: Color.black.opacity(0.2), radius: 4, x: 0, y: 2)
+                    
+                    Image(systemName: "sparkles")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(Color(hex: "FFD60A"))
+                }
             }
+            .pressEffect(intensity: 0.95)
         }
         .padding(.horizontal, 20)
         .padding(.top, 16)
@@ -194,28 +226,75 @@ struct GenderButton: View {
     let gender: String
     let isSelected: Bool
     let action: () -> Void
+    @State private var isHovered = false
+    
+    // 성별에 맞는 아이콘
+    var genderIcon: String {
+        return gender == "여성" ? "person.crop.circle.fill.badge.plus" : "person.crop.circle.fill"
+    }
     
     var body: some View {
         Button(action: action) {
-            Text(gender)
-                .font(.system(size: 16))
-                .fontWeight(isSelected ? .semibold : .regular)
-                .foregroundColor(isSelected ? .white : .gray)
-                .frame(maxWidth: .infinity)
-                .frame(height: 46)
-                .background(isSelected ?
-                          LinearGradient(
-                              gradient: Gradient(colors: [Color(hex: "FFD60A"), Color(hex: "FF8A00")]),
-                              startPoint: .leading,
-                              endPoint: .trailing
-                          ) : 
-                          LinearGradient(
-                              gradient: Gradient(colors: [Color(hex: "1A1A32"), Color(hex: "1A1A32")]),
-                              startPoint: .leading,
-                              endPoint: .trailing
-                          ))
-                .cornerRadius(12)
+            // 트렌디한 디자인
+            HStack(spacing: 10) {
+                Image(systemName: genderIcon)
+                    .font(.system(size: 18))
+                    .foregroundColor(isSelected ? .white : .gray)
+                
+                Text(gender)
+                    .font(.system(size: 16, weight: isSelected ? .semibold : .medium))
+                    .foregroundColor(isSelected ? .white : .gray)
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 52)
+            .background(
+                ZStack {
+                    if isSelected {
+                        // 선택된 상태
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(
+                                LinearGradient(
+                                    gradient: Gradient(colors: [Color(hex: "FFD60A"), Color(hex: "FF8A00")]),
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
+                            .shadow(color: Color(hex: "FFD60A").opacity(0.4), radius: 8, x: 0, y: 3)
+                        
+                        // 글로우 효과
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color.white.opacity(0.3), lineWidth: 1)
+                    } else {
+                        // 비선택 상태 - 유리 효과
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(Color(hex: "1A1A32").opacity(isHovered ? 0.8 : 0.6))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 16)
+                                    .stroke(
+                                        LinearGradient(
+                                            gradient: Gradient(colors: [
+                                                Color.white.opacity(0.2),
+                                                Color.white.opacity(0.05)
+                                            ]),
+                                            startPoint: .topLeading,
+                                            endPoint: .bottomTrailing
+                                        ),
+                                        lineWidth: 1
+                                    )
+                            )
+                    }
+                }
+            )
+            .scaleEffect(isHovered ? 1.02 : 1.0)
+            .animation(.spring(response: 0.2, dampingFraction: 0.7), value: isHovered)
         }
+        .buttonStyle(PlainButtonStyle())
+        .onHover { hovering in
+            withAnimation(.easeInOut(duration: 0.2)) {
+                isHovered = hovering
+            }
+        }
+        .pressEffect(intensity: 0.97)
     }
 }
 
@@ -256,27 +335,84 @@ struct FittingCategoryButton: View {
     let category: String
     let isSelected: Bool
     let action: () -> Void
+    @State private var isHovered = false
+    
+    // 카테고리별 아이콘
+    var categoryIcon: String {
+        switch category {
+        case "상의": return "tshirt"
+        case "하의": return "figure"
+        case "원피스": return "person.crop.square"
+        case "아우터": return "person.fill"
+        case "신발": return "shoe"
+        case "액세서리": return "crown"
+        default: return "tag"
+        }
+    }
     
     var body: some View {
         Button(action: action) {
-            Text(category)
-                .font(.system(size: 14))
-                .padding(.horizontal, 16)
-                .padding(.vertical, 10)
-                .background(isSelected ?
-                          LinearGradient(
-                              gradient: Gradient(colors: [Color(hex: "FFD60A"), Color(hex: "FF8A00")]),
-                              startPoint: .leading,
-                              endPoint: .trailing
-                          ) : 
-                          LinearGradient(
-                              gradient: Gradient(colors: [Color(hex: "1A1A32"), Color(hex: "1A1A32")]),
-                              startPoint: .leading,
-                              endPoint: .trailing
-                          ))
-                .cornerRadius(20)
-                .foregroundColor(.white)
+            HStack(spacing: 6) {
+                if isSelected {
+                    Image(systemName: categoryIcon)
+                        .font(.system(size: 12))
+                        .foregroundColor(.white)
+                }
+                
+                Text(category)
+                    .font(.system(size: 14, weight: isSelected ? .semibold : .medium))
+                    .foregroundColor(.white)
+            }
+            .padding(.horizontal, 14)
+            .padding(.vertical, 10)
+            .background(
+                ZStack {
+                    if isSelected {
+                        // 선택된 상태 배경
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(
+                                LinearGradient(
+                                    gradient: Gradient(colors: [Color(hex: "FFD60A"), Color(hex: "FF8A00")]),
+                                    startPoint: .leading, 
+                                    endPoint: .trailing
+                                )
+                            )
+                            .shadow(color: Color(hex: "FFD60A").opacity(0.4), radius: 8, x: 0, y: 3)
+                        
+                        // 글로우 효과
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.white.opacity(0.3), lineWidth: 1)
+                    } else {
+                        // 비선택 상태 - 유리 효과
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(Color(hex: "1A1A32").opacity(isHovered ? 0.8 : 0.6))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(
+                                        LinearGradient(
+                                            gradient: Gradient(colors: [
+                                                Color.white.opacity(0.2),
+                                                Color.white.opacity(0.05)
+                                            ]),
+                                            startPoint: .topLeading,
+                                            endPoint: .bottomTrailing
+                                        ),
+                                        lineWidth: 1
+                                    )
+                            )
+                    }
+                }
+            )
+            .scaleEffect(isHovered ? 1.05 : 1.0)
+            .animation(.spring(response: 0.2, dampingFraction: 0.6), value: isHovered)
         }
+        .buttonStyle(PlainButtonStyle())
+        .onHover { hovering in
+            withAnimation(.easeInOut(duration: 0.2)) {
+                isHovered = hovering
+            }
+        }
+        .pressEffect(intensity: 0.95)
     }
 }
 
@@ -319,7 +455,7 @@ struct ItemGridView: View {
     var body: some View {
         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
             ForEach(categoryItems.indices, id: \.self) { index in
-                ItemButton(
+                VirtualFittingItemButton(
                     itemName: categoryItems[index],
                     iconName: itemIcons[categoryIndex],
                     isSelected: selectedItem == index,
@@ -331,7 +467,7 @@ struct ItemGridView: View {
 }
 
 // MARK: - 아이템 버튼
-struct ItemButton: View {
+struct VirtualFittingItemButton: View {
     let itemName: String
     let iconName: String
     let isSelected: Bool
@@ -379,70 +515,156 @@ struct FittingActionButtonsView: View {
     @Binding var myPhoto: Bool
     let selectedItem: Int?
     let startFittingAction: () -> Void
+    @State private var isHovered = false
+    @State private var isPressed = false
+    @State private var pulsateAnimation = false
     
     var body: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 20) {
+            // 내 사진 업로드 버튼 - 트렌디한 디자인
             Button(action: {
-                myPhoto = true
+                withAnimation(.spring()) {
+                    myPhoto.toggle()
+                }
             }) {
-                HStack {
-                    Image(systemName: myPhoto ? "checkmark.circle.fill" : "plus.circle")
-                        .font(.system(size: 20))
+                HStack(spacing: 12) {
+                    ZStack {
+                        Circle()
+                            .fill(myPhoto ? Color(hex: "FFD60A").opacity(0.2) : Color.gray.opacity(0.2))
+                            .frame(width: 30, height: 30)
+                        
+                        Image(systemName: myPhoto ? "checkmark.circle.fill" : "plus.circle")
+                            .font(.system(size: 18, weight: .semibold))
+                            .foregroundColor(myPhoto ? Color(hex: "FFD60A") : .gray)
+                    }
                     
                     Text("내 사진 업로드")
-                        .font(.system(size: 16))
+                        .font(.system(size: 16, weight: myPhoto ? .semibold : .medium))
                 }
-                .foregroundColor(.white)
+                .foregroundColor(myPhoto ? .white : .gray)
                 .frame(maxWidth: .infinity)
-                .frame(height: 56)
-                .background(Color(hex: "1A1A32"))
-                .cornerRadius(12)
-            }
-            
-            // 피팅 시작 버튼
-            Button(action: startFittingAction) {
-                Text("가상 피팅 시작하기")
-                    .font(.system(size: 16, weight: .bold))
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 56)
-                    .background(
-                        LinearGradient(
-                            gradient: Gradient(colors: [Color(hex: "FFD60A"), Color(hex: "FF8A00")]),
-                            startPoint: .leading,
-                            endPoint: .trailing
+                .frame(height: 60)
+                .background(
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(Color(hex: "1A1A32").opacity(0.7))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(
+                                    myPhoto ? 
+                                        LinearGradient(
+                                            gradient: Gradient(colors: [Color(hex: "FFD60A"), Color(hex: "FF8A00").opacity(0.7)]),
+                                            startPoint: .leading,
+                                            endPoint: .trailing
+                                        ) : 
+                                        LinearGradient(
+                                            gradient: Gradient(colors: [Color.white.opacity(0.2), Color.white.opacity(0.05)]),
+                                            startPoint: .leading,
+                                            endPoint: .trailing
+                                        ),
+                                    lineWidth: 1.5
+                                )
                         )
-                    )
-                    .cornerRadius(12)
+                        .shadow(color: myPhoto ? Color(hex: "FFD60A").opacity(0.3) : Color.black.opacity(0.1), radius: 8, x: 0, y: 4)
+                )
             }
+            .pressEffect(intensity: 0.95)
+            
+            // 피팅 시작 버튼 - 앱스토어 스타일
+            Button(action: startFittingAction) {
+                ZStack {
+                    // 기본 배경
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(
+                            LinearGradient(
+                                gradient: Gradient(colors: [
+                                    Color(hex: "FFD60A"), 
+                                    Color(hex: "FF8A00")
+                                ]),
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        )
+                        .frame(height: 60)
+                        .shadow(color: Color(hex: "FF8A00").opacity(0.4), radius: 10, x: 0, y: 5)
+                        .overlay(
+                            // 글로우 오버레이
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(Color.white.opacity(pulsateAnimation ? 0.4 : 0.2), lineWidth: 1)
+                        )
+                        .scaleEffect(isPressed ? 0.97 : 1.0)
+                    
+                    // 트렌디한 버튼 텍스트
+                    HStack(spacing: 10) {
+                        Image(systemName: "sparkles")
+                            .font(.system(size: 18))
+                            .foregroundColor(.white)
+                        
+                        Text("가상 피팅 시작하기")
+                            .font(.system(size: 17, weight: .semibold))
+                    }
+                    .foregroundColor(.white)
+                    .opacity(pulsateAnimation ? 1.0 : 0.9)
+                    .scaleEffect(pulsateAnimation ? 1.02 : 1.0)
+                    .animation(
+                        Animation.easeInOut(duration: 1.5)
+                            .repeatForever(autoreverses: true),
+                        value: pulsateAnimation
+                    )
+                }
+            }
+            .buttonStyle(PlainButtonStyle())
             .disabled(selectedItem == nil || !myPhoto)
             .opacity((selectedItem == nil || !myPhoto) ? 0.6 : 1.0)
+            .onAppear {
+                withAnimation {
+                    pulsateAnimation = true
+                }
+            }
+            .simultaneousGesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged { _ in
+                        if !(selectedItem == nil || !myPhoto) {
+                            withAnimation(.easeInOut(duration: 0.2)) {
+                                isPressed = true
+                            }
+                        }
+                    }
+                    .onEnded { _ in
+                        if !(selectedItem == nil || !myPhoto) {
+                            withAnimation(.spring(response: 0.2, dampingFraction: 0.6)) {
+                                isPressed = false
+                            }
+                        }
+                    }
+            )
         }
         .padding(.horizontal, 20)
-        .padding(.top, 16)
+        .padding(.top, 20)
     }
 }
 
 // MARK: - 로딩 뷰
-struct LoadingView: View {
+struct VirtualFittingLoadingView: View {
     var body: some View {
-        Color.black.opacity(0.7)
-            .ignoresSafeArea()
-        
-        VStack(spacing: 20) {
-            ProgressView()
-                .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                .scaleEffect(2)
+        ZStack {
+            Color.black.opacity(0.7)
+                .ignoresSafeArea()
             
-            Text("가상 피팅 중...")
-                .font(.system(size: 18, weight: .medium))
-                .foregroundColor(.white)
+            VStack(spacing: 20) {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                    .scaleEffect(2)
+                
+                Text("가상 피팅 중...")
+                    .font(.system(size: 18, weight: .medium))
+                    .foregroundColor(.white)
+            }
         }
     }
 }
 
 // MARK: - 결과 뷰
-struct ResultView: View {
+struct VirtualFittingResultView: View {
     let selectedCategory: String
     let backAction: () -> Void
     
@@ -476,7 +698,7 @@ struct ResultView: View {
             .padding(.horizontal, 20)
             
             // 추천 아이템
-            RecommendedItemsView(selectedCategory: selectedCategory)
+            VirtualFittingRecommendedItemsView(selectedCategory: selectedCategory)
                 .padding(.top, 16)
         }
     }
@@ -505,7 +727,7 @@ struct ActionButton: View {
 }
 
 // MARK: - 추천 아이템 뷰
-struct RecommendedItemsView: View {
+struct VirtualFittingRecommendedItemsView: View {
     let selectedCategory: String
     
     var body: some View {
@@ -518,7 +740,7 @@ struct RecommendedItemsView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 16) {
                     ForEach(0..<5, id: \.self) { _ in
-                        RecommendedItemCard(selectedCategory: selectedCategory)
+                        VirtualFittingItemCard(selectedCategory: selectedCategory)
                     }
                 }
                 .padding(.horizontal, 20)
@@ -528,7 +750,7 @@ struct RecommendedItemsView: View {
 }
 
 // MARK: - 추천 아이템 카드
-struct RecommendedItemCard: View {
+struct VirtualFittingItemCard: View {
     let selectedCategory: String
     
     var systemImage: String {

@@ -1,0 +1,40 @@
+{
+  "buildCommand" : {
+    "command" : "build",
+    "skipDependencies" : false,
+    "style" : "buildAndRun"
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "13e8e5f731f8fb7d0d219576ee64b83ae03a1963860603fa6107865e3de172ee"
+    }
+  ],
+  "containerPath" : "/Users/jaeseokhan/Desktop/aru/aru/aru.xcodeproj",
+  "continueBuildingAfterErrors" : false,
+  "dependencyScope" : "workspace",
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "configurationName" : "Debug",
+    "overrides" : {
+      "commandLine" : {
+        "table" : {
+
+        }
+      },
+      "synthesized" : {
+        "table" : {
+          "ACTION" : "build",
+          "ENABLE_PREVIEWS" : "NO",
+          "ENABLE_XOJIT_PREVIEWS" : "NO"
+        }
+      }
+    }
+  },
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : false,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

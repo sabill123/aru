@@ -1,10 +1,21 @@
 import SwiftUI
 
 struct HomeView: View {
+    // 탭 바 관련
+    @Binding var selectedTab: Int
+    
     // 상태 관리
     @State private var selectedCategoryIndex: Int = 0
     @State private var showTrendingFeed = false
+    @State private var showCommunityFeed = false
+    @State private var showWebNovelCommunity = false
     @State private var selectedCategory = "추천"
+    @State private var communityCategory = ""
+    
+    // 초기화
+    init(selectedTab: Binding<Int> = .constant(2)) {
+        self._selectedTab = selectedTab
+    }
     
     // 애니메이션 상태
     @State private var isRefreshing = false
@@ -45,8 +56,10 @@ struct HomeView: View {
             // 메인 홈 화면
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
-                    // 헤더
+                    // 헤더 - 스크롤 시 고정
                     HomeHeaderView(username: "민지")
+                        .background(Color.darkBackground)
+                        .zIndex(1)
                     
                     // 카테고리 스크롤
                     CategoryScrollView(
@@ -69,6 +82,11 @@ struct HomeView: View {
                             }
                         }
                     }
+                    .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("categoryChanged"))) { notification in
+                        if let index = notification.userInfo?["index"] as? Int {
+                            selectedCategoryIndex = index
+                        }
+                    }
                     
                     // 카테고리별 콘텐츠 표시
                     Group {
@@ -79,13 +97,26 @@ struct HomeView: View {
                                 icon: "film",
                                 iconColor: Color.accentPink,
                                 showMoreAction: {
-                                    showTrendingFeed = true
+                                    communityCategory = categoryTitle()
+                                    if categoryTitle() == "웹소설" {
+                                        showWebNovelCommunity = true
+                                    } else {
+                                        showCommunityFeed = true
+                                    }
                                 }
                             )
                             
                             VideoGridView(
                                 titles: videoTitlesByCategory(),
-                                creators: videoCreatorsByCategory()
+                                creators: videoCreatorsByCategory(),
+                                onSeeMoreTapped: {
+                                    communityCategory = categoryTitle()
+                                    if categoryTitle() == "웹소설" {
+                                        showWebNovelCommunity = true
+                                    } else {
+                                        showCommunityFeed = true
+                                    }
+                                }
                             )
                             .scaleEffect(isRefreshing ? 0.96 : 1.0)
                             .opacity(isRefreshing ? 0.7 : 1.0)
@@ -100,14 +131,24 @@ struct HomeView: View {
                                 icon: categoryIcon(),
                                 iconColor: categoryColor(),
                                 showMoreAction: {
-                                    showTrendingFeed = true
+                                    communityCategory = selectedCategory
+                                    if selectedCategory == "웹소설" {
+                                        showWebNovelCommunity = true
+                                    } else {
+                                        showCommunityFeed = true
+                                    }
                                 }
                             )
                             
                             CategoryContentView(
                                 category: selectedCategory,
                                 onItemTap: {
-                                    showTrendingFeed = true
+                                    communityCategory = selectedCategory
+                                    if selectedCategory == "웹소설" {
+                                        showWebNovelCommunity = true
+                                    } else {
+                                        showCommunityFeed = true
+                                    }
                                 }
                             )
                             .scaleEffect(isRefreshing ? 0.96 : 1.0)
@@ -121,17 +162,36 @@ struct HomeView: View {
                             SectionHeaderView(
                                 title: "오늘의 창작 영감",
                                 icon: "sparkles",
-                                iconColor: Color.accentTeal,
-                                showMoreAction: {
-                                    // 영감 더보기 액션
-                                }
+                                iconColor: Color.accentTeal
                             )
                             
-                            InspirationCard()
-                                .scaleEffect(isRefreshing ? 0.96 : 1.0)
-                                .opacity(isRefreshing ? 0.7 : 1.0)
-                                .blur(radius: isRefreshing ? 2 : 0)
-                                .offset(y: isRefreshing ? 10 : 0)
+                            VStack {
+                                InspirationCard()
+                                
+                                Button {
+                                    // 영감 더보기 액션 - 창작 영감 페이지로 이동
+                                    selectedTab = 1  // 창작 탭으로 이동
+                                    NotificationCenter.default.post(name: NSNotification.Name("showInspirations"), object: nil)
+                                } label: {
+                                    Text("영감 더 보기")
+                                        .font(.subheadline)
+                                        .fontWeight(.medium)
+                                        .foregroundColor(Color.accentTeal)
+                                        .padding(.vertical, 8)
+                                        .padding(.horizontal, 20)
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 16)
+                                                .stroke(Color.accentTeal, lineWidth: 1.5)
+                                        )
+                                }
+                                .pressEffect()
+                                .frame(maxWidth: .infinity, alignment: .center)
+                                .padding(.top, 12)
+                            }
+                            .scaleEffect(isRefreshing ? 0.96 : 1.0)
+                            .opacity(isRefreshing ? 0.7 : 1.0)
+                            .blur(radius: isRefreshing ? 2 : 0)
+                            .offset(y: isRefreshing ? 10 : 0)
                         }
                     }
                     .animation(.spring(response: 0.4, dampingFraction: 0.8), value: selectedCategoryIndex)
@@ -143,6 +203,12 @@ struct HomeView: View {
             .background(Color.darkBackground)
             .fullScreenCover(isPresented: $showTrendingFeed) {
                 TrendingFeedView(category: selectedCategory)
+            }
+            .fullScreenCover(isPresented: $showCommunityFeed) {
+                CommunityFeedView(category: communityCategory)
+            }
+            .fullScreenCover(isPresented: $showWebNovelCommunity) {
+                WebNovelCommunityView()
             }
         }
     }

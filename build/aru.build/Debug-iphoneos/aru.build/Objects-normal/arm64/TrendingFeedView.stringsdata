@@ -1,0 +1,128 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Features/TrendingFeedView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "당신을 위한 추천",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 97
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 272
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 69,
+          "startingLine": 272
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 284
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 295
+        }
+      },
+      {
+        "comment": "",
+        "key": "프로 크리에이터 • %@ 전문가",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 452
+        }
+      },
+      {
+        "comment": "",
+        "key": "팔로우",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 462
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 52,
+          "startingLine": 523
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 77,
+          "startingLine": 523
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 538
+        }
+      },
+      {
+        "comment": "",
+        "key": "저장",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 553
+        }
+      },
+      {
+        "comment": "",
+        "key": "공유",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 568
+        }
+      },
+      {
+        "comment": "",
+        "key": "상세 정보",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 579
+        }
+      },
+      {
+        "comment": "",
+        "key": "당신이 좋아할 만한 콘텐츠",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 593
+        }
+      },
+      {
+        "comment": "",
+        "key": "댓글 작성...",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 625
+        }
+      }
+    ]
+  },
+  "version": 1
+}

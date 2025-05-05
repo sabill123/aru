@@ -1,0 +1,32 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Splash/SplashScreen.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "ARU",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 38
+        }
+      },
+      {
+        "comment": "",
+        "key": "모든 AI 창작을",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 68
+        }
+      },
+      {
+        "comment": "",
+        "key": "우주에서 탐험하세요",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 74
+        }
+      }
+    ]
+  },
+  "version": 1
+}

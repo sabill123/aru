@@ -17,7 +17,7 @@ struct RoundedCorner: Shape {
 
 // View 확장으로 특정 모서리만 둥글게 처리
 extension View {
-    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+    func aruCornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         clipShape(RoundedCorner(radius: radius, corners: corners))
     }
 }

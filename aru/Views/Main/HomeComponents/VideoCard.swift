@@ -23,10 +23,10 @@ struct VideoCard: View {
             // 플레이 버튼
             Circle()
                 .fill(Color.black.opacity(0.5))
-                .frame(width: 40, height: 40)
+                .frame(width: 36, height: 36)
                 .overlay(
                     Image(systemName: "play.circle")
-                        .font(.system(size: 24))
+                        .font(.system(size: 20))
                         .foregroundColor(.white)
                 )
                 .position(x: 70, y: 70)
@@ -34,8 +34,7 @@ struct VideoCard: View {
             // 비디오 정보
             VStack(alignment: .leading, spacing: 4) {
                 Text(title)
-                    .font(.callout)
-                    .fontWeight(.semibold)
+                    .font(.system(size: 13, weight: .semibold))
                     .lineLimit(1)
                 
                 HStack {
@@ -45,24 +44,24 @@ struct VideoCard: View {
                             startPoint: .leading,
                             endPoint: .trailing
                         ))
-                        .frame(width: 16, height: 16)
+                        .frame(width: 14, height: 14)
                     
                     Text(creator)
-                        .font(.caption)
+                        .font(.system(size: 11))
                         .foregroundColor(.gray)
                     
                     Spacer()
                     
                     Image(systemName: "heart")
-                        .font(.system(size: 10))
+                        .font(.system(size: 9))
                         .foregroundColor(.gray)
                     
                     Text("\(formatNumber(likes))")
-                        .font(.caption)
+                        .font(.system(size: 11))
                         .foregroundColor(.gray)
                 }
             }
-            .padding(8)
+            .padding(6)
         }
     }
     

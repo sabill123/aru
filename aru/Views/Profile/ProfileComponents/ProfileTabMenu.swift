@@ -13,7 +13,7 @@ struct ProfileTabMenu: View {
                 }) {
                     VStack(spacing: 10) {
                         Text(tabs[index])
-                            .font(.system(size: 16))
+                            .font(.system(size: 14))
                             .foregroundColor(selectedTab == index ? .white : .gray)
                         
                         if selectedTab == index {
@@ -25,18 +25,18 @@ struct ProfileTabMenu: View {
                                         endPoint: .trailing
                                     )
                                 )
-                                .frame(height: 3)
+                                .frame(height: 2)
                                 .matchedGeometryEffect(id: "tab", in: namespace)
                         } else {
                             Rectangle()
                                 .fill(Color.clear)
-                                .frame(height: 3)
+                                .frame(height: 2)
                         }
                     }
                     .frame(maxWidth: .infinity)
                 }
             }
         }
-        .padding(.top, 20)
+        .padding(.top, 16)
     }
 }

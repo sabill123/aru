@@ -1,0 +1,40 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Profile/ProfileComponents/ContentListView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "새로고침 중...",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 83
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@이 없습니다",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 104
+        }
+      },
+      {
+        "comment": "",
+        "key": "새로운 작품을 만들어보세요",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 108
+        }
+      },
+      {
+        "comment": "",
+        "key": "+ 새 작품 만들기",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 115
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,32 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Main/HomeComponents/InspirationCard.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "네온 사이버펑크 세계 생성",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 21
+        }
+      },
+      {
+        "comment": "",
+        "key": "AI와 함께 미래적인 도시의 이야기를 만들어보세요",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 25
+        }
+      },
+      {
+        "comment": "",
+        "key": "시작하기",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 33
+        }
+      }
+    ]
+  },
+  "version": 1
+}

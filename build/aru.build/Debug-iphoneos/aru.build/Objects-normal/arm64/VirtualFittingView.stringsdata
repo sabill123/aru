@@ -1,0 +1,88 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Features/VirtualFittingView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "성별",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 207
+        }
+      },
+      {
+        "comment": "",
+        "key": "카테고리",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 309
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ 아이템",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 428
+        }
+      },
+      {
+        "comment": "",
+        "key": "내 사진 업로드",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 541
+        }
+      },
+      {
+        "comment": "",
+        "key": "가상 피팅 시작하기",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 602
+        }
+      },
+      {
+        "comment": "",
+        "key": "가상 피팅 중...",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 658
+        }
+      },
+      {
+        "comment": "",
+        "key": "가상 피팅 결과",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 684
+        }
+      },
+      {
+        "comment": "",
+        "key": "이런 아이템은 어떠세요?",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 735
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ 아이템",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 778
+        }
+      },
+      {
+        "comment": "",
+        "key": "39,000원",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 782
+        }
+      }
+    ]
+  },
+  "version": 1
+}

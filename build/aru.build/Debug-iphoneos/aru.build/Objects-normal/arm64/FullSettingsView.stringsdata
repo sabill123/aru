@@ -1,0 +1,128 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Settings/FullSettingsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "설정",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 196
+        }
+      },
+      {
+        "comment": "",
+        "key": "로그아웃",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 155
+        }
+      },
+      {
+        "comment": "",
+        "key": "계정 삭제",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 175
+        }
+      },
+      {
+        "comment": "",
+        "key": "저장",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 202
+        }
+      },
+      {
+        "comment": "",
+        "key": "민지",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 243
+        }
+      },
+      {
+        "comment": "",
+        "key": "minji@example.com",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 247
+        }
+      },
+      {
+        "comment": "",
+        "key": "47",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 254
+        }
+      },
+      {
+        "comment": "",
+        "key": "작품",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 258
+        }
+      },
+      {
+        "comment": "",
+        "key": "237",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 268
+        }
+      },
+      {
+        "comment": "",
+        "key": "팔로워",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 272
+        }
+      },
+      {
+        "comment": "",
+        "key": "142",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 282
+        }
+      },
+      {
+        "comment": "",
+        "key": "팔로잉",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 286
+        }
+      },
+      {
+        "comment": "",
+        "key": "테마",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 309
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 419
+        }
+      },
+      {
+        "comment": "",
+        "key": "언어 선택",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 493
+        }
+      }
+    ]
+  },
+  "version": 1
+}

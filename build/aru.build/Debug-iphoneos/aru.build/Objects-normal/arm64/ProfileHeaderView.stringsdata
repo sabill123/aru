@@ -1,0 +1,64 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Profile/ProfileComponents/ProfileHeaderView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 62
+        }
+      },
+      {
+        "comment": "",
+        "key": "작품",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 65
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 71
+        }
+      },
+      {
+        "comment": "",
+        "key": "팔로워",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 74
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 80
+        }
+      },
+      {
+        "comment": "",
+        "key": "팔로잉",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 83
+        }
+      },
+      {
+        "comment": "",
+        "key": "프로필 편집",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 91
+        }
+      }
+    ]
+  },
+  "version": 1
+}

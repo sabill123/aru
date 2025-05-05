@@ -1,0 +1,72 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Chat/ChatView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "내 캐릭터",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 77
+        }
+      },
+      {
+        "comment": "",
+        "key": "전체보기",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 83
+        }
+      },
+      {
+        "comment": "",
+        "key": "만들기",
+        "location": {
+          "startingColumn": 50,
+          "startingLine": 108
+        }
+      },
+      {
+        "comment": "",
+        "key": "추천 캐릭터",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 132
+        }
+      },
+      {
+        "comment": "",
+        "key": "최근 대화",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 152
+        }
+      },
+      {
+        "comment": "",
+        "key": "최신순",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 159
+        }
+      },
+      {
+        "comment": "",
+        "key": "이름순",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 160
+        }
+      },
+      {
+        "comment": "",
+        "key": "읽지 않은 메시지",
+        "location": {
+          "startingColumn": 48,
+          "startingLine": 161
+        }
+      }
+    ]
+  },
+  "version": 1
+}

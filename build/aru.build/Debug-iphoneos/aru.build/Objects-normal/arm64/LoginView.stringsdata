@@ -1,0 +1,104 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Login/LoginView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "ARU",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 29
+        }
+      },
+      {
+        "comment": "",
+        "key": "AI 창작 도구",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 34
+        }
+      },
+      {
+        "comment": "",
+        "key": "카카오로 로그인",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 57
+        }
+      },
+      {
+        "comment": "",
+        "key": "구글로 로그인",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 80
+        }
+      },
+      {
+        "comment": "",
+        "key": "Apple로 로그인",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 103
+        }
+      },
+      {
+        "comment": "",
+        "key": "이메일로 로그인",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 128
+        }
+      },
+      {
+        "comment": "",
+        "key": "이메일",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 151
+        }
+      },
+      {
+        "comment": "",
+        "key": "비밀번호",
+        "location": {
+          "startingColumn": 41,
+          "startingLine": 161
+        }
+      },
+      {
+        "comment": "",
+        "key": "로그인",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 172
+        }
+      },
+      {
+        "comment": "",
+        "key": "•",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 201
+        }
+      },
+      {
+        "comment": "",
+        "key": "비밀번호 찾기",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 196
+        }
+      },
+      {
+        "comment": "",
+        "key": "회원가입",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 207
+        }
+      }
+    ]
+  },
+  "version": 1
+}

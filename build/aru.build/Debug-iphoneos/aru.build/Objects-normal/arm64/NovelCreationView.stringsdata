@@ -1,0 +1,64 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Features/NovelCreationView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "웹소설 생성",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 109
+        }
+      },
+      {
+        "comment": "",
+        "key": "제목",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 201
+        }
+      },
+      {
+        "comment": "",
+        "key": "소설 제목을 입력하세요",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 205
+        }
+      },
+      {
+        "comment": "",
+        "key": "장르",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 222
+        }
+      },
+      {
+        "comment": "",
+        "key": "웹소설 생성 중...",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 381
+        }
+      },
+      {
+        "comment": "",
+        "key": "AI 웹소설 생성하기",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 392
+        }
+      },
+      {
+        "comment": "",
+        "key": "생성된 웹소설",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 440
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,16 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Main/HomeComponents/VideoCard.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "%@",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 59
+        }
+      }
+    ]
+  },
+  "version": 1
+}

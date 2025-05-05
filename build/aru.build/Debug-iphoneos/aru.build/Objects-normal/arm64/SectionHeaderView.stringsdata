@@ -1,0 +1,16 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Main/HomeComponents/SectionHeaderView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "더보기",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 37
+        }
+      }
+    ]
+  },
+  "version": 1
+}

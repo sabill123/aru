@@ -1,0 +1,16 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Chat/ChatComponents/ChatListItem.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 60
+        }
+      }
+    ]
+  },
+  "version": 1
+}

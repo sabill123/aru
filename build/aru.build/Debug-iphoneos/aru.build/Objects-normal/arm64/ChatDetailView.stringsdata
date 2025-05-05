@@ -1,0 +1,56 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Chat/ChatDetailView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "AI 어시스턴트",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 51
+        }
+      },
+      {
+        "comment": "",
+        "key": "대화 시작하기",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 73
+        }
+      },
+      {
+        "comment": "",
+        "key": "오늘",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 91
+        }
+      },
+      {
+        "comment": "",
+        "key": "온라인",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 248
+        }
+      },
+      {
+        "comment": "",
+        "key": "오프라인",
+        "location": {
+          "startingColumn": 52,
+          "startingLine": 248
+        }
+      },
+      {
+        "comment": "",
+        "key": "메시지 입력...",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 290
+        }
+      }
+    ]
+  },
+  "version": 1
+}

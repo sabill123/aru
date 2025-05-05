@@ -1,0 +1,64 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Features/ImageGenerationView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "이미지 생성",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 96
+        }
+      },
+      {
+        "comment": "",
+        "key": "이미지 설명",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 146
+        }
+      },
+      {
+        "comment": "",
+        "key": "스타일",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 155
+        }
+      },
+      {
+        "comment": "",
+        "key": "비율",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 167
+        }
+      },
+      {
+        "comment": "",
+        "key": "생성하고 싶은 이미지를 자세히 설명해주세요",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 206
+        }
+      },
+      {
+        "comment": "",
+        "key": "AI 이미지 생성하기",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 388
+        }
+      },
+      {
+        "comment": "",
+        "key": "생성된 이미지",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 426
+        }
+      }
+    ]
+  },
+  "version": 1
+}

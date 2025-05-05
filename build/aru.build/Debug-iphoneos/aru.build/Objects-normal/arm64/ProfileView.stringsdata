@@ -1,0 +1,96 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Profile/ProfileView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "%lld 좋아요",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 39
+        }
+      },
+      {
+        "comment": "",
+        "key": "PROFILE ARU",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 91
+        }
+      },
+      {
+        "comment": "",
+        "key": "Professional",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 159
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 173
+        }
+      },
+      {
+        "comment": "",
+        "key": "작품",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 177
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 184
+        }
+      },
+      {
+        "comment": "",
+        "key": "팔로워",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 188
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 195
+        }
+      },
+      {
+        "comment": "",
+        "key": "팔로잉",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 199
+        }
+      },
+      {
+        "comment": "",
+        "key": "프로필 편집",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 211
+        }
+      },
+      {
+        "comment": "",
+        "key": "설정",
+        "location": {
+          "startingColumn": 33,
+          "startingLine": 439
+        }
+      }
+    ]
+  },
+  "version": 1
+}

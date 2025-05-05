@@ -1,0 +1,24 @@
+{
+  "source": "/Users/jaeseokhan/Desktop/aru/aru/aru/Views/Main/HomeView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "영감 더 보기",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 176
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld명이 좋아합니다",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 375
+        }
+      }
+    ]
+  },
+  "version": 1
+}
